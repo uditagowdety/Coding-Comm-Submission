@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    height: 100vh;
+  }
+
+  .left,
+  .right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .left {
+    background-color: #f0f0f0;
+  }
+
+  .right {
+    background-color: #d0d0d0;
+  }
