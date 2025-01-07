@@ -1,0 +1,5 @@
+made the branch :) working now!
+
+todo:
+- build splash page
+- axios link to login once backend part done
