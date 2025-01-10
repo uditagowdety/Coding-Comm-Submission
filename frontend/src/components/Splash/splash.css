@@ -21,7 +21,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
 }
 
 .right{
@@ -30,4 +30,31 @@
 
 .text__box{
   margin-bottom: 2rem;
+}
+
+.button__container{
+  display: flex;
+  /* justify-content: center; */
+}
+
+.text__container,
+.button__container{
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.button{
+  font-size: 1.3rem;
+  margin-right: 2rem;
+  padding: 0.3rem 1.5rem;
+  border-radius: 10px;
+}
+
+.project__title{
+  font-family: "Press Start 2P", sans-serif;
+}
+
+.project__subtitle,
+.project__tagline{
+  font-family: 'Instrument Sans',sans-serif;
 }

@@ -10,12 +10,12 @@ const SplashPage = () => {
           <div className="text__container">
             <h2 className="text__box project__title">CodeMaze</h2>
             <h1 className="text__box project__subtitle">Navigating Code, One Problem at a Time</h1>
-            <div className="text__box project__tagline">Short Intro Text</div>
+            <div className="text__box project__tagline">Step into the maze, tackle coding challenges, and improve your skills!</div>
           </div>
           
           <div className="button__container">
-            <button>login</button>
-            <button>guest</button>
+            <button className="button">Login</button>
+            <button className="button">Guest</button>
           </div>
 
           
