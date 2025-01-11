@@ -44,6 +44,7 @@
 }
 
 .button{
+  font-family: 'Space Mono',sans-serif;
   font-size: 1.3rem;
   margin-right: 2rem;
   padding: 0.3rem 1.5rem;
