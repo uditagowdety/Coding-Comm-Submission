@@ -4,7 +4,7 @@ const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    throw new UnauthenticatedError('No token provided')
+    throw new CustomError('No token provided')
   }
 
   const token = authHeader.split(' ')[1] // Extract token after "Bearer"
