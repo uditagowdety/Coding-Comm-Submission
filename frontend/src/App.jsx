@@ -1,18 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Splash from './components/Splash/Splash'
-import Login from './components/Login/Login'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import SplashPage from "./components/Splash/Splash";
+import LoginPage from "./components/Login/Login";
 
-function App() {
-  
+const App = () => {
   return (
-    <>
-      {/* <Splash /> */}
-      <Login />
-    </>
-  )
-}
+    <Routes>
+      <Route path="/" element={<SplashPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/dashboard" element={<h1>Dashboard Placeholder</h1>} />
+    </Routes>
+  );
+};
 
-export default App
+export default App;

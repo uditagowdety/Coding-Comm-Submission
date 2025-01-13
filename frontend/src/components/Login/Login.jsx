@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./login.css";
 
-const LoginPage = () => {
+const Login = () => {
   return (
     <div className="login-container">
       {/* Header */}
       <div className="login-header">
-        <div className="header-item">CodeMaze</div>
-        <div className="header-item">Dashboard</div>
+        <Link to="/" className="header-item">CodeMaze</Link>
+        <Link to="/dashboard" className="header-item">Dashboard</Link>
       </div>
 
       {/* Login Card */}
@@ -39,4 +40,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
