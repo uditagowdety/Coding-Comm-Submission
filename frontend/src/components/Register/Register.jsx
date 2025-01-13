@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./login.css";
+import "./register.css";
 
 const Login = () => {
   return (
@@ -13,12 +13,21 @@ const Login = () => {
 
       {/* Login Card */}
       <div className="login-card">
-        <h2 className="login-title">Login to your Account</h2>
+        <h2 className="login-title">Sign up for CodeMaze!</h2>
         <form>
+          {/* Username Field */}
           <label>
             Username
             <input type="text" className="input-field" placeholder="Enter your username" />
           </label>
+
+          {/* Email Field */}
+          <label>
+            Email
+            <input type="email" className="input-field" placeholder="Enter your email" />
+          </label>
+
+          {/* Password Field */}
           <label>
             Password
             <div className="password-field">
@@ -26,12 +35,14 @@ const Login = () => {
               <button type="button" className="toggle-password">👁️</button>
             </div>
           </label>
-          <button type="submit" className="login-button">Login</button>
+
+          {/* Register Button */}
+          <button type="submit" className="login-button">Register</button>
         </form>
         <div className="register-section">
-          <span>Don't have an account?</span>
-          {/* Updated Register Button with Link */}
-          <Link to="/register" className="register-button">Register</Link>
+          <span>Already have an account?</span>
+          {/* Link to Login Page */}
+          <Link to="/login" className="register-button">Login</Link>
         </div>
       </div>
 

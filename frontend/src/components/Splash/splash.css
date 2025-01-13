@@ -51,6 +51,10 @@
   border-radius: 10px;
 }
 
+.button:hover{
+  cursor: pointer;
+}
+
 .project__title{
   font-family: "Press Start 2P", sans-serif;
 }
