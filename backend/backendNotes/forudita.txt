@@ -1,0 +1,4 @@
+1. i have made it such that a guest cannot access dashboard since theyre not authenticated.
+when theyre not authenticated it sends an error msg so in front end fetch that and send them to login/signup page if so.
+
+2.after coding frontend, build it so i can use the static files for serving the ui thru my backend.
