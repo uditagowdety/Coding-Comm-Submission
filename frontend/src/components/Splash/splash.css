@@ -1,0 +1,65 @@
+/* Reset example */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container{
+  display: flex;
+  height: 100vh;
+}
+
+.left,
+.right{
+  flex: 1;
+  /* align-items: center; */
+}
+
+.left{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  /* margin-left: 1rem; */
+}
+
+.right{
+  background-image: url(../../assets/splash.jpeg);
+}
+
+.text__box{
+  margin-bottom: 2rem;
+}
+
+.button__container{
+  display: flex;
+  /* justify-content: center; */
+}
+
+.text__container,
+.button__container{
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.button{
+  font-family: 'Space Mono',sans-serif;
+  font-size: 1.3rem;
+  margin-right: 2rem;
+  padding: 0.3rem 1.5rem;
+  border-radius: 10px;
+}
+
+.button:hover{
+  cursor: pointer;
+}
+
+.project__title{
+  font-family: "Press Start 2P", sans-serif;
+}
+
+.project__subtitle,
+.project__tagline{
+  font-family: 'Instrument Sans',sans-serif;
+}
