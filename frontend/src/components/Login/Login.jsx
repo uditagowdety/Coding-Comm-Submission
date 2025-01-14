@@ -1,8 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [feedback, setFeedback] = useState(""); // For feedback messages
+  const navigate = useNavigate(); // For navigation after login
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent form submission refresh
+
+    try {
+      const response = await fetch("http://localhost:5000/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }), // Send login details
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token); // Save token to localStorage
+        setFeedback("Login successful! Redirecting to dashboard...");
+        setTimeout(() => navigate("/dashboard"), 1500); // Redirect to dashboard
+      } else {
+        const errorData = await response.json();
+        setFeedback(errorData.error || "Invalid username or password.");
+      }
+    } catch (err) {
+      setFeedback("Something went wrong. Please try again later.");
+    }
+  };
+
   return (
     <div className="login-container">
       {/* Header */}
@@ -14,29 +45,49 @@ const Login = () => {
       {/* Login Card */}
       <div className="login-card">
         <h2 className="login-title">Login to your Account</h2>
-        <form>
+        <form onSubmit={handleLogin}>
           <label>
             Username
-            <input type="text" className="input-field" placeholder="Enter your username" />
+            <input
+              type="text"
+              className="input-field"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)} // Track input changes
+            />
           </label>
           <label>
             Password
             <div className="password-field">
-              <input type="password" className="input-field" placeholder="Enter your password" />
-              <button type="button" className="toggle-password">👁️</button>
+              <input
+                type="password"
+                className="input-field"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} // Track input changes
+              />
+              <button
+                type="button"
+                className="toggle-password"
+                onClick={() => {
+                  const passwordInput = document.querySelector(".password-field input");
+                  passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+                }}
+              >
+                👁️
+              </button>
             </div>
           </label>
           <button type="submit" className="login-button">Login</button>
         </form>
         <div className="register-section">
           <span>Don't have an account?</span>
-          {/* Updated Register Button with Link */}
           <Link to="/register" className="register-button">Register</Link>
         </div>
       </div>
 
       {/* Feedback Placeholder */}
-      <div className="feedback-placeholder">feedback message placeholder</div>
+      <div className="feedback-placeholder">{feedback}</div>
     </div>
   );
 };
