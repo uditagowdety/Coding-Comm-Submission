@@ -1,24 +1,15 @@
 const mongoose = require('mongoose');
 
 const lessonSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  subtitle: {
-    type: String,
-    required: true,
-  },
-  theoryContent: {
-    type: String, // Store theory content as a string
-    required: true,
-  },
+  title: { type: String, required: true },
+  subtitle: { type: String, required: true },
+  theoryContent: { type: String, required: true },
   codingQuestions: [
     {
-      title: String, // Coding question title
-      difficulty: String, // e.g., Easy, Medium, Hard
-      description: String, // Question description
-      solution: String, // Expected solution (optional)
+      title: String,
+      difficulty: String,
+      description: String,
+      solution: String,
     },
   ],
 });
