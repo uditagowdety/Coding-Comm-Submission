@@ -35,17 +35,13 @@ const Practice = () => {
           <div className="theory-group" key={index}>
             {/* Theory Title */}
             <div className="theory-title">
-              <span>{theory.title}</span>
-            </div>
-
-            {/* Questions */}
-            <div className="questions-list">
-              {theory.questions.map((question, qIndex) => (
-                <div className="question-item" key={qIndex}>
-                  <div className="question-icon"></div>
-                  <span>{question}</span>
-                </div>
-              ))}
+              <Link
+                to="/coding"
+                className="theory-link"
+                key={index}
+              >
+                {theory.title}
+              </Link>
             </div>
           </div>
         ))}
