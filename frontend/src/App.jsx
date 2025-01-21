@@ -8,6 +8,7 @@ import TheoryPage from "./components/Theory/Theory";
 import PracticePage from "./components/Practice/Practice";
 import CodingPage from "./components/Coding/Coding";
 import Dashboard from "./components/Dashboard/Dashboard";
+import "./App.css";
 
 const App = () => {
   return (
