@@ -1,8 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./home.css";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path); // Navigate to the specified path
+  };
+
   return (
     <div className="home-container">
       {/* Header */}
@@ -32,8 +38,18 @@ const Home = () => {
               <p className="roadmap-subtitle">subtitle</p>
             </div>
             <div className="roadmap-actions">
-              <button className="action-button">theory</button>
-              <button className="action-button">practice</button>
+              <button
+                className="action-button"
+                onClick={() => handleNavigation("/theory")}
+              >
+                theory
+              </button>
+              <button
+                className="action-button"
+                onClick={() => handleNavigation("/practice")}
+              >
+                practice
+              </button>
             </div>
           </div>
         ))}
