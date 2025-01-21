@@ -1,0 +1,116 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Main Container */
+  .home-container {
+    font-family: 'Instrument Sans', sans-serif;
+    background-color: #f9f9f9;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Header */
+  .home-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .header-item {
+    font-size: 1.2rem;
+    color: #333;
+    font-family: 'Press Start 2P', sans-serif;
+    text-decoration: none;
+  }
+  
+  /* Welcome Section */
+  .welcome-section {
+    margin-top: 5rem;
+  }
+  
+  .welcome-text {
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .emoji {
+    font-size: 1.8rem;
+  }
+  
+  /* Roadmap */
+  .roadmap {
+    margin-top: 3rem;
+    width: 60%;
+  }
+  
+  .roadmap-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: white;
+  }
+  
+  .circle.completed {
+    background-color: #a3e635; /* Green for completed */
+  }
+  
+  .checkmark {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .roadmap-content {
+    margin-left: 1rem;
+    flex: 1;
+  }
+  
+  .roadmap-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .roadmap-subtitle {
+    color: #777;
+  }
+  
+  .roadmap-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .action-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .action-button:hover {
+    background-color: #d4d4d4;
+  }
+  
