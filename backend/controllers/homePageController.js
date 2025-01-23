@@ -16,6 +16,7 @@ const getLessons = async (req, res) => {
 };
 
 // New controller to fetch theory content for a specific lesson
+// Updated getTheoryContent controller
 const getTheoryContent = async (req, res) => {
   try {
     const lesson = await Lesson.findById(req.params.id);
@@ -26,12 +27,14 @@ const getTheoryContent = async (req, res) => {
     res.status(200).json({
       title: lesson.title,
       subtitle: lesson.subtitle,
-      theoryContent: lesson.theoryContent, // Send full theory content
+      theoryContent: lesson.theoryContent,
+      subLessons: lesson.subLessons, // Include subLessons in the response
     });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch theory content' });
+    res.status(500).json({ error: 'Failed to fetch lesson theory content' });
   }
 };
+
 
 // New controller to fetch coding questions for a specific lesson
 const getCodingQuestions = async (req, res) => {
@@ -49,6 +52,41 @@ const getCodingQuestions = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch coding questions' });
   }
 };
+// Fetch sublessons for a specific lesson
+const getSubLessons = async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id, "subLessons");
+    if (!lesson) return res.status(404).json({ error: "Lesson not found" });
 
+    res.status(200).json({ subLessons: lesson.subLessons });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch sublessons" });
+  }
+};
 
-module.exports = { getLessons, getTheoryContent, getCodingQuestions };
+// Mark a specific sublesson as completed
+const toggleSubLessonCompletion = async (req, res) => {
+  const { id, subLessonId } = req.params;
+  try {
+    const lesson = await Lesson.findById(id);
+    if (!lesson) return res.status(404).json({ error: "Lesson not found" });
+
+    const subLesson = lesson.subLessons.id(subLessonId);
+    if (!subLesson) return res.status(404).json({ error: "Sublesson not found" });
+
+    subLesson.isCompleted = !subLesson.isCompleted;
+    await lesson.save();
+
+    res.status(200).json({ message: "Sublesson updated successfully", subLesson });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update sublesson" });
+  }
+};
+
+module.exports = {
+  getLessons,
+  getTheoryContent,
+  getCodingQuestions,
+  getSubLessons,
+  toggleSubLessonCompletion,
+};

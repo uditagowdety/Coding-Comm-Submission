@@ -5,6 +5,7 @@ import "./home.css";
 const Home = () => {
   const [lessons, setLessons] = useState([]); // State to hold lessons
   const [error, setError] = useState(""); // State to hold errors
+  const [loading, setLoading] = useState(true); // Loading state
   const navigate = useNavigate();
 
   // Function to fetch lessons from the API
@@ -25,6 +26,8 @@ const Home = () => {
       setLessons(data.lessons); // Set the fetched lessons
     } catch (err) {
       setError(err.message); // Set the error message
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -35,6 +38,9 @@ const Home = () => {
   const handleNavigation = (path, lessonId) => {
     navigate(`${path}/${lessonId}`); // Navigate to the specified path with lesson ID
   };
+
+  if (loading) return <div>Loading lessons...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="home-container">
@@ -51,17 +57,16 @@ const Home = () => {
         </h2>
       </div>
 
-      {/* Error Handling */}
-      {error && <div className="error">{error}</div>}
-
       {/* Learning Roadmap */}
       <div className="roadmap">
-        {lessons.map((lesson, index) => (
+        {lessons.map((lesson) => (
           <div className="roadmap-item" key={lesson._id}>
             <div
-              className={`circle ${index === 0 ? "completed" : ""}`}
+              className={`circle ${
+                lesson.subLessons?.every((s) => s.isCompleted) ? "completed" : ""
+              }`}
             >
-              {index === 0 && <span className="checkmark">✔</span>}
+              {lesson.subLessons?.every((s) => s.isCompleted) && <span className="checkmark">✔</span>}
             </div>
             <div className="roadmap-content">
               <h3 className="roadmap-title">{lesson.title}</h3>

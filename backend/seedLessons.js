@@ -15,69 +15,39 @@ mongoose.connect(process.env.MONGO_URI, {
 // Define the lesson data
 const lessons = [
   {
-    title: 'Lesson 1',
-    subtitle: 'Introduction to Programming',
-    theoryContent: 'This is the theory content for Lesson 1.',
+    title: "Lesson 1",
+    subtitle: "Introduction to Programming",
+    theoryContent: "This is the theory content for Lesson 1.",
+    subLessons: [
+      { title: "What is Programming?", content: "Learn about programming basics." },
+      { title: "Hello World Program", content: "Write your first Hello World program." },
+    ],
     codingQuestions: [
       {
-        title: 'Reverse a String',
-        difficulty: 'Easy',
-        description: 'Write a function to reverse a string.',
-      },
-      {
-        title: 'Sum of Array',
-        difficulty: 'Easy',
-        description: 'Write a function to calculate the sum of an array of numbers.',
+        title: "Reverse a String",
+        difficulty: "Easy",
+        description: "Write a function to reverse a string.",
       },
     ],
   },
   {
-    title: 'Lesson 2',
-    subtitle: 'Data Structures',
-    theoryContent: 'This is the theory content for Lesson 2.',
-    codingQuestions: [
-      {
-        title: 'Implement a Stack',
-        difficulty: 'Medium',
-        description: 'Write a class to implement a stack data structure.',
-      },
-      {
-        title: 'Queue Operations',
-        difficulty: 'Medium',
-        description: 'Write a program to perform enqueue and dequeue operations on a queue.',
-      },
+    title: "Lesson 2",
+    subtitle: "Data Structures",
+    theoryContent: "This is the theory content for Lesson 2.",
+    subLessons: [
+      { title: "Introduction to Arrays", content: "Learn about arrays." },
+      { title: "Introduction to Linked Lists", content: "Understand linked lists." },
     ],
-  },
-  {
-    title: 'Lesson 3',
-    subtitle: 'Algorithms',
-    theoryContent: 'This is the theory content for Lesson 3.',
     codingQuestions: [
       {
-        title: 'Binary Search',
-        difficulty: 'Easy',
-        description: 'Implement the binary search algorithm.',
-      },
-      {
-        title: 'Find Factorial',
-        difficulty: 'Easy',
-        description: 'Write a recursive function to find the factorial of a number.',
-      },
-    ],
-  },
-  {
-    title: 'Lesson 4',
-    subtitle: 'Object-Oriented Programming',
-    theoryContent: 'This is the theory content for Lesson 4.',
-    codingQuestions: [
-      {
-        title: 'Class and Objects',
-        difficulty: 'Easy',
-        description: 'Create a class and demonstrate its use in a program.',
+        title: "Implement a Stack",
+        difficulty: "Medium",
+        description: "Write a class to implement a stack.",
       },
     ],
   },
 ];
+
 
 // Seed the database
 const seedLessons = async () => {
