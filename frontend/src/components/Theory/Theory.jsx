@@ -50,7 +50,8 @@ const Theory = () => {
             <li>SubLesson Name3</li>
             <li>SubLesson Name4</li>
           </ul>
-          <button className="practice-button">practice</button>
+          {/* Updated Practice Button */}
+          <Link to="/practice" className="practice-button">practice</Link>
         </div>
       </div>
     </div>

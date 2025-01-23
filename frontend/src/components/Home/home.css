@@ -1,20 +1,21 @@
-/* Reset */
-* {
+  /* Reset */
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-  
+
   /* Main Container */
   .home-container {
-    font-family: 'Instrument Sans', sans-serif;
-    background-color: #f9f9f9;
+    font-family: var(--font-body);
+    background-color: var(--dark-blue-1);
+    color: var(--text-light);
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+
   /* Header */
   .home-header {
     position: absolute;
@@ -22,95 +23,113 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 1rem 2rem;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
+    padding: var(--padding-medium) var(--padding-large);
+    background-color: var(--dark-blue-2);
+    border-bottom: 1px solid var(--blue);
   }
-  
+  .home-header .header-item {
+    color: var(--text-light); /* Explicitly set to white */
+  }
+
   .header-item {
     font-size: 1.2rem;
-    color: #333;
-    font-family: 'Press Start 2P', sans-serif;
+    color: white; /* White text by default */
+    font-family: var(--font-heading);
     text-decoration: none;
+    transition: color 0.3s ease;
   }
-  
+
+  .header-item:hover {
+    color: var(--yellow-1); /* Highlighted yellow on hover */
+  }
+
   /* Welcome Section */
   .welcome-section {
     margin-top: 5rem;
   }
-  
+
   .welcome-text {
     font-size: 1.8rem;
     text-align: center;
     font-weight: bold;
+    color: var(--text-light);
   }
-  
+
   .emoji {
     font-size: 1.8rem;
   }
-  
+
   /* Roadmap */
   .roadmap {
     margin-top: 3rem;
     width: 60%;
   }
-  
+
   .roadmap-item {
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: var(--padding-large);
   }
-  
+
   .circle {
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
-    background-color: #ccc;
+    background-color: var(--dark-blue-2);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    color: white;
+    color: var(--text-light);
+    box-shadow: 0 0 10px var(--blue);
   }
-  
+
   .circle.completed {
-    background-color: #a3e635; /* Green for completed */
+    background-color: var(--yellow-1);
+    color: var(--dark-blue-1);
   }
-  
+
   .checkmark {
     font-size: 1.5rem;
     font-weight: bold;
   }
-  
+
   .roadmap-content {
-    margin-left: 1rem;
+    margin-left: var(--padding-medium);
     flex: 1;
   }
-  
+
   .roadmap-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: bold;
+    color: var(--text-light);
   }
-  
+
   .roadmap-subtitle {
-    color: #777;
+    font-size: 1rem;
+    color: var(--text-dark);
   }
-  
+
+  /* Roadmap Actions */
   .roadmap-actions {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--padding-small);
   }
-  
+
   .action-button {
-    padding: 0.5rem 1rem;
+    padding: var(--padding-small) var(--padding-medium);
     border: none;
-    border-radius: 5px;
-    background-color: #e0e0e0;
+    border-radius: var(--border-radius);
+    background-color: var(--blue);
+    color: var(--text-light);
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
+
   .action-button:hover {
-    background-color: #d4d4d4;
+    background-color: var(--yellow-2);
+    color: var(--dark-blue-1);
   }
-  
