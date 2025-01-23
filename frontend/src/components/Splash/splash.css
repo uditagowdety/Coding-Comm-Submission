@@ -5,61 +5,84 @@
   box-sizing: border-box;
 }
 
-.container{
+/* Main Container */
+.container {
   display: flex;
   height: 100vh;
+  background-color: var(--dark-blue-1); /* Primary dark background */
+  color: var(--text-light); /* Light text for contrast */
 }
 
 .left,
-.right{
+.right {
   flex: 1;
-  /* align-items: center; */
 }
 
-.left{
+.left {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  /* margin-left: 1rem; */
+  background-color: var(--dark-blue-2); /* Slightly lighter dark blue */
+  padding: var(--padding-large);
 }
 
-.right{
+.right {
   background-image: url(../../assets/splash.jpeg);
+  background-size: cover;
+  background-position: center;
 }
 
-.text__box{
-  margin-bottom: 2rem;
+/* Text Elements */
+.text__box {
+  margin-bottom: var(--padding-medium);
+  color: var(--text-light); /* Ensure text is readable */
 }
 
-.button__container{
-  display: flex;
-  /* justify-content: center; */
-}
-
-.text__container,
-.button__container{
-  margin-left: 4rem;
-  margin-right: 4rem;
-}
-
-.button{
-  font-family: 'Space Mono',sans-serif;
-  font-size: 1.3rem;
-  margin-right: 2rem;
-  padding: 0.3rem 1.5rem;
-  border-radius: 10px;
-}
-
-.button:hover{
-  cursor: pointer;
-}
-
-.project__title{
-  font-family: "Press Start 2P", sans-serif;
+.project__title {
+  font-family: var(--font-heading);
+  font-size: 2rem; /* Slightly larger for emphasis */
+  color: var(--text-light); /* Contrast with dark background */
 }
 
 .project__subtitle,
-.project__tagline{
-  font-family: 'Instrument Sans',sans-serif;
+.project__tagline {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  color: var(--text-light);
+}
+
+/* Buttons */
+.button__container {
+  display: flex;
+  gap: var(--padding-medium); /* Add consistent spacing between buttons */
+}
+
+.button {
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  padding: var(--padding-small) var(--padding-large);
+  border-radius: var(--border-radius);
+  background-color: var(--yellow-1); /* Bright yellow for action buttons */
+  color: var(--dark-blue-1); /* Dark text on yellow background */
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--yellow-2); /* Slightly brighter hover state */
+  transform: scale(1.05); /* Add a hover effect */
+}
+
+/* Right Section */
+.right {
+  border-left: 2px solid var(--dark-blue-2); /* Optional visual divider */
+}
+
+/* Utility Classes for Text Container Spacing */
+.text__container,
+.button__container {
+  margin-left: var(--padding-large);
+  margin-right: var(--padding-large);
 }

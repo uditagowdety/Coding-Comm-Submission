@@ -46,14 +46,14 @@ const Home = () => {
     <div className="home-container">
       {/* Header */}
       <div className="home-header">
-        <Link to="/" className="header-item">project name</Link>
-        <Link to="/dashboard" className="header-item">dashboard</Link>
+        <Link to="/" className="header-item">CodeMaze</Link>
+        <Link to="/dashboard" className="header-item">Dashboard</Link>
       </div>
 
       {/* Welcome Section */}
       <div className="welcome-section">
         <h2 className="welcome-text">
-          welcome back, learner <span className="emoji">🤓</span>
+          Welcome Back, Learner! <span className="emoji">✨</span>
         </h2>
       </div>
 

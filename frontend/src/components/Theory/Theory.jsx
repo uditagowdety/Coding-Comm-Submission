@@ -137,12 +137,17 @@ const Theory = () => {
               </li>
             ))}
           </ul>
+<<<<<<< HEAD
           <button
             className="practice-button"
             onClick={() => navigate(`/practice/${id}`)}
           >
             practice
           </button>
+=======
+          {/* Updated Practice Button */}
+          <Link to="/practice" className="practice-button">practice</Link>
+>>>>>>> origin/main
         </div>
       </div>
     </div>
