@@ -1,57 +1,140 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "./theory.css";
 
 const Theory = () => {
+  const { id } = useParams();
+  const [lesson, setLesson] = useState(null);
+  const [error, setError] = useState("");
+  const [currentSubLesson, setCurrentSubLesson] = useState(null);
+  const contentRefs = useRef({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchLessonContent = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          `http://localhost:5000/api/v1/homepage/lessons/${id}/theory`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        if (!response.ok) throw new Error("Failed to fetch lesson theory content");
+
+        const data = await response.json();
+        setLesson(data);
+        if (data.subLessons.length > 0) setCurrentSubLesson(data.subLessons[0]._id);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchLessonContent();
+  }, [id]);
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY + 100;
+    Object.entries(contentRefs.current).forEach(([subLessonId, element]) => {
+      if (element.offsetTop <= scrollPosition && element.offsetTop + element.offsetHeight > scrollPosition) {
+        setCurrentSubLesson(subLessonId);
+      }
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScrollToSublesson = (subLessonId) => {
+    contentRefs.current[subLessonId]?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const markLessonComplete = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `http://localhost:5000/api/v1/homepage/lessons/${id}/complete`,
+        {
+          method: "PUT",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to mark lesson as complete");
+
+      const updatedLesson = await response.json();
+      setLesson(updatedLesson.lesson);
+    } catch (err) {
+      setError("Failed to update lesson");
+    }
+  };
+
+  if (error) return <div>Error: {error}</div>;
+  if (!lesson) return <div>Loading...</div>;
+
   return (
     <div className="theory-container">
-      {/* Header */}
       <div className="theory-header">
         <Link to="/" className="header-item">project name</Link>
         <Link to="/dashboard" className="header-item">dashboard</Link>
       </div>
 
-      {/* Main Content */}
       <div className="theory-main">
-        {/* Left Section */}
         <div className="theory-left">
-          <div className="lesson-icon"> {/* Placeholder for icon */}
+          <div className="lesson-icon">
             <div className="icon-circle"></div>
           </div>
           <div className="lesson-details">
-            <h2 className="lesson-title">SubLesson Name1</h2>
-            <p className="lesson-subtitle">Lesson Name</p>
+            <h2 className="lesson-title">{lesson.subtitle}</h2>
+            <p className="lesson-subtitle">{lesson.title}</p>
           </div>
         </div>
 
-        {/* Middle Section */}
         <div className="theory-middle">
-          <h2 className="sublesson-title">SubLesson Name1</h2>
-          <p className="sublesson-body">
-            Body of the sublesson.<br />
-            Algorithms are a step-by-step process or a set of rules to be followed in calculations or other problem-solving operations.
-            They form the backbone of computer science and play a crucial role in software development, data analysis, artificial intelligence, and more.<br /><br />
-            One of the fundamental characteristics of an algorithm is its efficiency. A well-designed algorithm not only solves a problem
-            but does so in the least amount of time and with minimal resources.
-          </p>
+          <h2 className="lesson-main-title">{lesson.title}</h2>
+          <p className="lesson-content">{lesson.theoryContent}</p>
+          <div>
+            {lesson.subLessons.map((subLesson) => (
+              <div
+                key={subLesson._id}
+                ref={(el) => (contentRefs.current[subLesson._id] = el)}
+                className="sublesson-section"
+              >
+                <h3 className="sublesson-title">{subLesson.title}</h3>
+                <p className="sublesson-content">{subLesson.content}</p>
+              </div>
+            ))}
+          </div>
           <div className="button-group">
             <Link to="/home" className="button">Back to homepage</Link>
-            <button className="button">SubLesson1 Complete</button>
-            <button className="button">Next Sublesson</button>
+            <button
+              className="button"
+              onClick={markLessonComplete}
+              disabled={lesson.subLessons.every((sl) => sl.isCompleted)}
+            >
+              Mark Lesson Complete
+            </button>
+            <button className="button" onClick={() => navigate(`/theory/${+id + 1}`)}>
+              Next Lesson
+            </button>
           </div>
         </div>
 
-        {/* Right Section */}
         <div className="theory-right">
-          <div className="content-header">LessonName Content</div>
+          <div className="content-header">{lesson.title} Content</div>
           <ul className="content-list">
-            <li>SubLesson Name1</li>
-            <li>SubLesson Name2</li>
-            <li>SubLesson Name3</li>
-            <li>SubLesson Name4</li>
+            {lesson.subLessons.map((subLesson) => (
+              <li key={subLesson._id}>
+                <button
+                  className={`sublesson-button ${currentSubLesson === subLesson._id ? "active" : ""}`}
+                  onClick={() => handleScrollToSublesson(subLesson._id)}
+                >
+                  {subLesson.title}
+                </button>
+              </li>
+            ))}
           </ul>
-          {/* Updated Practice Button */}
-          <Link to="/practice" className="practice-button">practice</Link>
+          <button className="practice-button">practice</button>
         </div>
       </div>
     </div>

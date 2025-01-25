@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+
 const authMiddleware = require('../middleware/authMiddleware');
-const { getLessons, getTheoryContent, getCodingQuestions } = require('../controllers/homePageController');
+const { getLessons, getTheoryContent, getCodingQuestions,getSubLessons,
+    markLessonComplete } = require('../controllers/homePageController');
 
 // Existing route for homepage lessons
 router.get('/lessons', authMiddleware, getLessons);
@@ -10,6 +12,11 @@ router.get('/lessons', authMiddleware, getLessons);
 router.get('/lessons/:id/theory', authMiddleware, getTheoryContent);
 
 // New route for fetching coding questions
-router.get('/lessons/:id/coding-questions', authMiddleware, getCodingQuestions);
+router.get('/lessons/:id/questions', authMiddleware, getCodingQuestions);
+
+router.get("/lessons/:id/sublessons", authMiddleware, getSubLessons);
+router.put("/lessons/:id/sublessons/:subLessonId", authMiddleware, markLessonComplete);
+router.put('/lessons/:id/complete', authMiddleware, markLessonComplete);
+
 
 module.exports = router;
