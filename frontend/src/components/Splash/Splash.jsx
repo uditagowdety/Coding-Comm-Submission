@@ -18,8 +18,8 @@ const Splash = () => {
           <Link to="/login">
             <button className="button">Login</button>
           </Link>
-          <Link to="/home">
-            <button className="button">Guest</button>
+          <Link to="/register">
+            <button className="button">Sign Up</button>
           </Link>
         </div>
       </div>
