@@ -23,7 +23,7 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token); // Save token to localStorage
-        setFeedback("Login successful! Redirecting to dashboard...");
+        setFeedback("Login successful! Redirecting to home page...");
         setTimeout(() => navigate("/home"), 1500); // Redirect to dashboard
       } else {
         const errorData = await response.json();
