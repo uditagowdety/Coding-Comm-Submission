@@ -6,6 +6,7 @@ const Theory = () => {
   const { id } = useParams();
   const [lesson, setLesson] = useState(null);
   const [error, setError] = useState("");
+  const [isLastLesson, setIsLastLesson] = useState(false); // Track if it's the last lesson
   const [currentSubLesson, setCurrentSubLesson] = useState(null);
   const contentRefs = useRef({});
   const navigate = useNavigate();
@@ -23,6 +24,21 @@ const Theory = () => {
         const data = await response.json();
         setLesson(data);
         if (data.subLessons.length > 0) setCurrentSubLesson(data.subLessons[0]._id);
+
+        // Fetch all lessons to determine if this is the last lesson
+        const lessonsResponse = await fetch(
+          "http://localhost:5000/api/v1/homepage/lessons",
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        if (!lessonsResponse.ok) throw new Error("Failed to fetch lessons");
+
+        const lessonsData = await lessonsResponse.json();
+        const currentIndex = lessonsData.lessons.findIndex((lesson) => lesson._id === id);
+
+        // If the current lesson is the last one, update state
+        if (currentIndex === lessonsData.lessons.length - 1) {
+          setIsLastLesson(true);
+        }
       } catch (err) {
         setError(err.message);
       }
@@ -34,7 +50,10 @@ const Theory = () => {
   const handleScroll = () => {
     const scrollPosition = window.scrollY + 100;
     Object.entries(contentRefs.current).forEach(([subLessonId, element]) => {
-      if (element.offsetTop <= scrollPosition && element.offsetTop + element.offsetHeight > scrollPosition) {
+      if (
+        element.offsetTop <= scrollPosition &&
+        element.offsetTop + element.offsetHeight > scrollPosition
+      ) {
         setCurrentSubLesson(subLessonId);
       }
     });
@@ -60,12 +79,46 @@ const Theory = () => {
         }
       );
 
-      if (!response.ok) throw new Error("Failed to mark lesson as complete");
+      if (!response.ok) throw new Error("Failed to toggle lesson completion");
 
       const updatedLesson = await response.json();
-      setLesson(updatedLesson.lesson);
+      setLesson((prevLesson) => ({
+        ...prevLesson,
+        isCompleted: updatedLesson.lesson.isCompleted, // Update isCompleted state
+      }));
     } catch (err) {
       setError("Failed to update lesson");
+    }
+  };
+
+  const handleNextLesson = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      // Fetch all lessons to determine the next lesson
+      const response = await fetch("http://localhost:5000/api/v1/homepage/lessons", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch lessons");
+      }
+
+      const data = await response.json();
+
+      // Find the index of the current lesson
+      const currentIndex = data.lessons.findIndex((lesson) => lesson._id === id);
+      if (currentIndex === -1 || currentIndex === data.lessons.length - 1) {
+        return; // No next lesson
+      }
+
+      // Get the next lesson's ID
+      const nextLessonId = data.lessons[currentIndex + 1]._id;
+
+      // Navigate to the next lesson
+      navigate(`/theory/${nextLessonId}`);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
@@ -75,8 +128,12 @@ const Theory = () => {
   return (
     <div className="theory-container">
       <div className="theory-header">
-        <Link to="/" className="header-item">project name</Link>
-        <Link to="/dashboard" className="header-item">dashboard</Link>
+        <Link to="/" className="header-item">
+          project name
+        </Link>
+        <Link to="/dashboard" className="header-item">
+          dashboard
+        </Link>
       </div>
 
       <div className="theory-main">
@@ -106,17 +163,18 @@ const Theory = () => {
             ))}
           </div>
           <div className="button-group">
-            <Link to="/home" className="button">Back to homepage</Link>
-            <button
-              className="button"
-              onClick={markLessonComplete}
-              disabled={lesson.subLessons.every((sl) => sl.isCompleted)}
-            >
-              Mark Lesson Complete
+            <Link to="/home" className="button">
+              Back to homepage
+            </Link>
+            <button className="button" onClick={markLessonComplete}>
+              {lesson.isCompleted ? "Unmark Lesson" : "Mark Lesson Complete"}
             </button>
-            <button className="button" onClick={() => navigate(`/theory/${+id + 1}`)}>
-              Next Lesson
-            </button>
+
+            {!isLastLesson && (
+              <button className="button" onClick={handleNextLesson}>
+                Next Lesson
+              </button>
+            )}
           </div>
         </div>
 
@@ -126,7 +184,9 @@ const Theory = () => {
             {lesson.subLessons.map((subLesson) => (
               <li key={subLesson._id}>
                 <button
-                  className={`sublesson-button ${currentSubLesson === subLesson._id ? "active" : ""}`}
+                  className={`sublesson-button ${
+                    currentSubLesson === subLesson._id ? "active" : ""
+                  }`}
                   onClick={() => handleScrollToSublesson(subLesson._id)}
                 >
                   {subLesson.title}
