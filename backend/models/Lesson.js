@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const subLessonSchema = new mongoose.Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
-  isCompleted: { type: Boolean, default: false },
 });
 
 const lessonSchema = new mongoose.Schema({
@@ -11,6 +10,8 @@ const lessonSchema = new mongoose.Schema({
   subtitle: { type: String, required: true },
   theoryContent: { type: String, required: true },
   subLessons: [subLessonSchema], // Add subLessons
+  isCompleted: { type: Boolean, default: false },
+
   codingQuestions: [
     {
       title: String,

@@ -62,12 +62,11 @@ const Home = () => {
         {lessons.map((lesson) => (
           <div className="roadmap-item" key={lesson._id}>
             <div
-              className={`circle ${
-                lesson.subLessons?.every((s) => s.isCompleted) ? "completed" : ""
-              }`}
-            >
-              {lesson.subLessons?.every((s) => s.isCompleted) && <span className="checkmark">✔</span>}
-            </div>
+  className={`circle ${lesson.isCompleted ? "completed" : ""}`}
+>
+  {lesson.isCompleted && <span className="checkmark">✔</span>}
+</div>
+
             <div className="roadmap-content">
               <h3 className="roadmap-title">{lesson.title}</h3>
               <p className="roadmap-subtitle">{lesson.subtitle}</p>
