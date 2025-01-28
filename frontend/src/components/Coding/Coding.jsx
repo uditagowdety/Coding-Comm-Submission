@@ -9,7 +9,7 @@ const CodingPage = () => {
     <div className="coding-container">
       {/* Header */}
       <div className="coding-header">
-        <Link to="/" className="header-item">project name</Link>
+        <Link to="/home" className="header-item">home page</Link>
         <Link to="/dashboard" className="header-item">dashboard</Link>
       </div>
 
