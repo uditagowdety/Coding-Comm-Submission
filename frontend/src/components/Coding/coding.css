@@ -32,11 +32,14 @@
   
   /* Main Content */
   .coding-main {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding: 2rem;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Two columns: left wider (2fr) and right narrower (1fr) */
+    grid-template-rows: auto 1fr;   /* Two rows of equal height */
+    gap: 1rem;                    /* Spacing between grid items */
+    height: 100vh;                /* Full viewport height */
+    background-color: #f4f4f4;    /* Background for the container */
+    padding: 1rem;                /* Add padding around the grid */
+    align-items: stretch;
   }
   
   /* Practice Question Section */
@@ -50,13 +53,16 @@
   }
   
   .practice-question {
-    flex: 1;
+    grid-column: 1 / 2;           /* First column */
+    grid-row: 1/span 2;              /* Spans both rows */
+    height: 100%;
   }
   
   .code-editor {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
+    grid-column: 2 / 3;           /* Second column */
+    grid-row: 1 / 2;              /* First row only */
+    margin-bottom: 1rem;
+    height: calc(61%);
   }
   
   .editor-header {
@@ -80,21 +86,42 @@
   }
   
   /* Output Section */
-  .output-section {
-    flex: 1;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.output-section {
+    grid-column: 2 / 3;           /* Second column */
+    grid-row: 2 / 3;              /* Second row */
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;               /* To align text inside */
+    align-items: center;         /* Center vertically */
+    justify-content: center;     /* Center horizontally */
     font-family: "Instrument Sans", sans-serif;
     font-size: 1rem;
     color: #666;
-  }
+
+    /* Match the height of the coding box */
+    height: 200px; /* Ensure height matches the coding editor box */
+}
+
   
   /* Section Title */
   .section-title {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 1rem;
+  }
+  
+  .code-input {
+    width: 100%;
+    height: 200px; /* Adjust height as needed */
+    background-color: #1e1e1e; /* Dark mode for code editor */
+    color: #ffffff;
+    font-family: "Courier New", monospace;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    resize: vertical; /* Allows resizing only vertically */
   }
   
