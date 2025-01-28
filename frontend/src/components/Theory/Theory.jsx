@@ -194,7 +194,8 @@ const Theory = () => {
               </li>
             ))}
           </ul>
-          <button className="practice-button">practice</button>
+          <button className="practice-button"
+          onClick={()=>navigate("/coding")}>practice</button>
         </div>
       </div>
     </div>
