@@ -44,8 +44,8 @@ const Practice = () => {
     <div className="practice-container">
       {/* Header */}
       <div className="practice-header">
-        <Link to="/" className="header-item">
-          project name
+        <Link to="/home" className="header-item">
+          home page
         </Link>
         <Link to="/dashboard" className="header-item">
           dashboard

@@ -1,175 +1,186 @@
 /* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Container */
-  .theory-container {
-    font-family: "Instrument Sans", sans-serif;
-  }
-  
-  /* Header */
-  .theory-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .header-item {
-    font-family: "Press Start 2P", sans-serif;
-    font-size: 1rem;
-    text-decoration: none;
-    color: #333;
-  }
-  .lesson-main-title{
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  }
-  .lesson-content{
-    font-size: 1.35rem;
-    margin-bottom: 15px;
-  }
-  /* Main Content */
-  .theory-main {
-    display: flex;
-    padding: 2rem;
-  }
-  
-  /* Left Section */
-  .theory-left {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .icon-circle {
-    width: 100px;
-    height: 100px;
-    background-color: #ccc;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-  }
-  
-  .lesson-details {
-    text-align: center;
-  }
-  
-  .lesson-title {
-    font-weight: bold;
-    font-size: 2rem;
-  }
-  
-  .lesson-subtitle {
-    color: gray;
-  }
-  .sublesson-button {
-    display: block;
-    margin: 0.5rem 0;
-    padding: 0.5rem;
-    text-align: left;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  .sublesson-button.active {
-    font-weight: bold;
-    color: #003566;
-  }
-  
-  /* Middle Section */
-  .theory-middle {
-    flex: 3;
-    padding: 0 2rem;
-  }
-  
-  .sublesson-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-  }
-  
-  .sublesson-body {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-  }
-  
-  .button-group {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .button {
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    background-color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-    font-family: "Instrument Sans", sans-serif;
-  }
-  .scrollable-content {
-    max-height: 600px;
-    overflow-y: auto;
-    padding: 10px;
-  }
-  
-  .sublesson-section {
-    margin-bottom: 20px;
-  }
-  
-  .sublesson-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .sublesson-content {
-    font-size: 1.35rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-  }
-  
-  .button-group .button {
-    margin-right: 10px;
-    margin-top: 20px;
-  }
-  
-  
-  /* Right Section */
-  .theory-right {
-    position: sticky;
-    top: 10px;
-    height: auto;
-    background-color: #f7f7f7;
-    padding: 1rem;
-    border-radius: 8px;
-  }
-  
-  .content-header {
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .content-list {
-    list-style: none;
-    margin-bottom: 1rem;
-  }
-  
-  .content-list li {
-    margin: 0.5rem 0;
-  }
-  
-  .practice-button {
-    background-color: #e0e0e0;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
+/* Container */
+.theory-container {
+  font-family: var(--font-body);
+  background-color: var(--text-light);
+}
+
+/* Header */
+.theory-header {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padding-medium) var(--padding-large);
+  background-color: var(--dark-blue-2);
+  border-bottom: 1px solid var(--dark-blue-1);
+}
+
+.header-item {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--text-light);
+}
+
+/* Main Content */
+.theory-main {
+  display: flex;
+  gap: var(--padding-large);
+  padding: var(--padding-large);
+}
+
+/* Left Section */
+.theory-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-circle {
+  width: 100px;
+  height: 100px;
+  background-color: var(--text-dark);
+  border-radius: 50%;
+  margin-bottom: var(--padding-medium);
+}
+
+.lesson-details {
+  text-align: center;
+}
+
+.lesson-title {
+  font-weight: bold;
+  font-size: 2rem;
+  color: var(--text-dark);
+}
+
+.lesson-subtitle {
+  color: var(--dark-blue-2);
+}
+
+.sublesson-button {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dark);
+}
+
+.sublesson-button.active {
+  font-weight: bold;
+  color: var(--blue);
+}
+
+/* Middle Section */
+.theory-middle {
+  flex: 3;
+  padding: 0 var(--padding-medium);
+}
+
+.sublesson-title {
+  font-size: 2rem;
+  margin-bottom: var(--padding-medium);
+  font-weight: bold;
+}
+
+.sublesson-body {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: var(--padding-large);
+}
+
+.scrollable-content {
+  max-height: 600px;
+  overflow-y: auto;
+  padding: var(--padding-small);
+}
+
+.sublesson-section {
+  margin-bottom: var(--padding-medium);
+}
+
+.sublesson-content {
+  font-size: 1.35rem;
+  line-height: 1.5;
+  margin-bottom: var(--padding-medium);
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: var(--padding-medium);
+}
+
+.button {
+  background-color: white; /* Ensure default yellow background */
+  color: var(--text-dark);
+  border: 1px solid var(--dark-blue-1);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: var(--yellow-2); /* Slightly darker yellow on hover */
+}
+
+/* Right Sidebar (Sticky & Content-Based Height) */
+.theory-right {
+  position: sticky;
+  top: var(--padding-medium);
+  align-self: flex-start;  /* Makes it span only the height of its content */
+  background-color: var(--text-light);
+  padding: var(--padding-medium);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 250px;
+}
+
+.content-header {
+  font-weight: bold;
+  margin-bottom: var(--padding-medium);
+  color: var(--text-dark);
+}
+
+.content-list {
+  list-style: none;
+  margin-bottom: var(--padding-medium);
+  padding: 0;
+}
+
+.content-list li {
+  margin: 0.5rem 0;
+  color: var(--text-dark);
+}
+
+.content-list li a {
+  text-decoration: none;
+  color: var(--blue);
+}
+
+.practice-button {
+  background-color: var(--dark-blue-2);
+  color: var(--text-light);
+  padding: var(--padding-small) var(--padding-medium);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.practice-button:hover {
+  background-color: var(--blue);
+}
