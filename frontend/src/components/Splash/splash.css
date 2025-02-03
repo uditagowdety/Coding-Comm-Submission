@@ -71,7 +71,7 @@
 
 .button:hover {
   cursor: pointer;
-  background-color: var(--yellow-2); /* Slightly brighter hover state */
+  background-color: white; /* Slightly brighter hover state */
   transform: scale(1.05); /* Add a hover effect */
 }
 

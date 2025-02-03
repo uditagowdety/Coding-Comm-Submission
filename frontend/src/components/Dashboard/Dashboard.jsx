@@ -1,52 +1,57 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Dashboard.css";
+import "./dashboard.css";
 
 const Dashboard = () => {
-    return (
-        <div className="dashboard-container">
-            <header className="dashboard-header">
-                <Link to="/" className="header-item">project name</Link>
-                <Link to="/home" className="header-item">home page</Link>
-            </header>
-            <main className="dashboard-main">
-                <section className="profile-section">
-                    <div className="profile-picture"></div>
-                    <div className="profile-info">
-                        <h2>Learner Name</h2>
-                        <p>Location</p>
-                        <div className="profile-stats">
-                            <div>
-                                <span>1</span> COURSES
-                            </div>
-                            <div>
-                                <span>6</span> QUESTIONS
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section className="total-stats">
-                    <div className="total-stat-box">Skills achieved: 1</div>
-                    <div className="total-stat-box">Hours learned: 4</div>
-                    <div className="total-stat-box">Hours practiced: 2</div>
-                </section>
-                <section className="achievements-container">
-                    <h3>Achievements</h3>
-                    <ul>
-                        <li>🏆 Achievement 1</li>
-                        <li>🏆 Achievement 2</li>
-                    </ul>
-                </section>
-                <section className="recommendations-container">
-                    <h3>Recommended</h3>
-                </section>
-                <section className="chart-container">
-                    <h3>Progress</h3>
-                    <div className="chart-placeholder">[Insert Graph]</div>
-                </section>
-            </main>
+  return (
+    <div className="dashboard-container">
+      {/* Header */}
+      <div className="dashboard-header">
+        <Link to="/" className="header-item">project name</Link>
+        <Link to="/homepage" className="header-item">homepage</Link>
+      </div>
+
+      {/* Dashboard Content */}
+      <div className="dashboard-content">
+        {/* Left Section: Learner Profile */}
+        <div className="learner-profile">
+          <div className="profile-container">
+            <div className="profile-pic">
+              <span className="edit-icon">✎</span>
+            </div>
+            <h2 className="learner-name">Learner Name</h2>
+            <p className="learner-username">@username</p>
+          </div>
+          <button className="logout-button">Log Out</button>
         </div>
-    );
+
+        {/* Middle Section: Stats */}
+        <div className="stats-section">
+          <h2 className="section-title">Total Stats</h2>
+          <div className="stats-grid">
+            <div className="stat-box">
+              <h3>1</h3>
+              <p>Skills Achieved</p>
+            </div>
+            <div className="stat-box">
+              <h3>35</h3>
+              <p>Problems Solved</p>
+            </div>
+            <div className="stat-box">
+              <h3>7</h3>
+              <p>Streak Days 🔥</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Recommended Section Below Stats */}
+      <div className="recommended-section">
+        <h2 className="section-title">Recommended</h2>
+        <div className="recommended-box"></div>
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;

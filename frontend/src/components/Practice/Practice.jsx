@@ -45,7 +45,7 @@ const Practice = () => {
       {/* Header */}
       <div className="practice-header">
         <Link to="/home" className="header-item">
-          home page
+          homepage
         </Link>
         <Link to="/dashboard" className="header-item">
           dashboard
