@@ -11,25 +11,38 @@ const Home = () => {
   // Function to fetch lessons from the API
   const fetchLessons = async () => {
     try {
-      const token = localStorage.getItem("token"); // Get the token from localStorage
+      const token = localStorage.getItem("token");
       const response = await fetch("http://localhost:5000/api/v1/homepage/lessons", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch lessons");
-      }
-
+  
+      if (!response.ok) throw new Error("Failed to fetch lessons");
+  
       const data = await response.json();
-      setLessons(data.lessons); // Set the fetched lessons
+  
+      // Fetch user progress separately
+      const progressResponse = await fetch("http://localhost:5000/api/v1/user/progress", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+  
+      if (!progressResponse.ok) throw new Error("Failed to fetch progress");
+  
+      const progressData = await progressResponse.json();
+  
+      // Merge user progress into lessons
+      const updatedLessons = data.lessons.map((lesson) => ({
+        ...lesson,
+        isCompleted: progressData.lessonProgress.some(p => p.lessonId === lesson._id && p.isCompleted),
+      }));
+  
+      setLessons(updatedLessons);
     } catch (err) {
-      setError(err.message); // Set the error message
+      setError(err.message);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     fetchLessons(); // Fetch lessons when the component mounts

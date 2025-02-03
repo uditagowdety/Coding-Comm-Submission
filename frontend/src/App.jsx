@@ -21,7 +21,6 @@ const App = () => {
       <Route path="/theory/:id" element={<TheoryPage />} />
       <Route path="/practice/:id" element={<PracticePage />} />
       <Route path="/coding" element={<CodingPage />} />
-
     </Routes>
   );
 };

@@ -1,20 +1,23 @@
 const Lesson = require('../models/Lesson');
 
+// Fetch all practice questions grouped by lessons
 const getAllPracticeQuestions = async (req, res) => {
   try {
-    // Fetch all lessons with their coding questions
     const lessons = await Lesson.find({}, 'title subtitle codingQuestions');
-    if (!lessons) {
+    if (!lessons || lessons.length === 0) {
       return res.status(404).json({ error: 'No lessons found' });
     }
 
-    // Return grouped questions by lesson
     res.status(200).json({
       lessons: lessons.map((lesson) => ({
         lessonId: lesson._id,
         lessonTitle: lesson.title,
         lessonSubtitle: lesson.subtitle,
-        codingQuestions: lesson.codingQuestions,
+        codingQuestions: lesson.codingQuestions.map((q) => ({
+          questionId: q._id,
+          title: q.title,
+          difficulty: q.difficulty,
+        })),
       })),
     });
   } catch (err) {
