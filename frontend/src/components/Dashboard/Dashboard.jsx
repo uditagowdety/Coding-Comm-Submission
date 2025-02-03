@@ -8,30 +8,24 @@ const Dashboard = () => {
       {/* Header */}
       <div className="dashboard-header">
         <Link to="/" className="header-item">project name</Link>
-        <Link to="/home" className="header-item">homepage</Link>
+        <Link to="/homepage" className="header-item">homepage</Link>
       </div>
 
-      {/* Main Content */}
+      {/* Dashboard Content */}
       <div className="dashboard-content">
         {/* Left Section: Learner Profile */}
         <div className="learner-profile">
-          <div className="profile-pic"></div>
-          <h2 className="learner-name">Learner Name</h2>
-          <p className="learner-username">@username</p>
-          
-          <div className="stats-box">
-            <div className="stat-item">
-              <h3>1</h3>
-              <p>COURSES</p>
+          <div className="profile-container">
+            <div className="profile-pic">
+              <span className="edit-icon">✎</span>
             </div>
-            <div className="stat-item">
-              <h3>6</h3>
-              <p>QUESTIONS</p>
-            </div>
+            <h2 className="learner-name">Learner Name</h2>
+            <p className="learner-username">@username</p>
           </div>
+          <button className="logout-button">Log Out</button>
         </div>
 
-        {/* Center Section: Total Stats */}
+        {/* Middle Section: Stats */}
         <div className="stats-section">
           <h2 className="section-title">Total Stats</h2>
           <div className="stats-grid">
@@ -49,12 +43,12 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Right Section: Recommended */}
-        <div className="recommended-section">
-          <h2 className="section-title">Recommended</h2>
-          <div className="recommended-box"></div>
-        </div>
+      {/* Recommended Section Below Stats */}
+      <div className="recommended-section">
+        <h2 className="section-title">Recommended</h2>
+        <div className="recommended-box"></div>
       </div>
     </div>
   );
