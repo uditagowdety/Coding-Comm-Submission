@@ -24,7 +24,7 @@ const Login = () => {
         const data = await response.json();
         localStorage.setItem("token", data.token); // Save token to localStorage
         setFeedback("Login successful! Redirecting to home page...");
-        setTimeout(() => navigate("/home"), 1500); // Redirect to dashboard
+        setTimeout(() => navigate("/home"), 1500); // Redirect to homepage
       } else {
         const errorData = await response.json();
         setFeedback(errorData.error || "Invalid username or password.");
