@@ -29,8 +29,6 @@ const getTheoryContent = async (req, res) => {
   }
 };
 
-
-
 module.exports = {
   getLessons,
   getTheoryContent,
