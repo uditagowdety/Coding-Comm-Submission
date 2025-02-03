@@ -74,33 +74,34 @@ const Home = () => {
       <div className="roadmap">
         {lessons.map((lesson) => (
           <div className="roadmap-item" key={lesson._id}>
-            <div
-  className={`circle ${lesson.isCompleted ? "completed" : ""}`}
->
-  {lesson.isCompleted && <span className="checkmark">✔</span>}
-</div>
+            {/* Lesson Completion Indicator */}
+            <div className={`circle ${lesson.isCompleted ? "completed" : ""}`}>
+              {lesson.isCompleted && <span className="checkmark">✔</span>}
+            </div>
 
+            {/* Lesson Details */}
             <div className="roadmap-content">
               <h3 className="roadmap-title">{lesson.title}</h3>
               <p className="roadmap-subtitle">{lesson.subtitle}</p>
             </div>
+
+            {/* Action Buttons */}
             <div className="roadmap-actions">
-              <button
-                className="action-button"
-                onClick={() => handleNavigation("/theory", lesson._id)}
-              >
+              <button className="action-button" onClick={() => handleNavigation("/theory", lesson._id)}>
                 theory
               </button>
-              <button
-                className="action-button"
-                onClick={() => handleNavigation("/practice", lesson._id)}
-              >
+              <button className="action-button" onClick={() => handleNavigation("/practice", lesson._id)}>
                 practice
               </button>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Footer */}
+      <footer className="footer">
+        © {new Date().getFullYear()} CodeMaze | All rights reserved.
+      </footer>
     </div>
   );
 };
