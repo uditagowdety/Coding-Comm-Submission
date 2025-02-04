@@ -1,15 +1,44 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import "./coding.css";
 
 const CodingPage = () => {
+  const { lessonId, questionIndex } = useParams(); // Get lesson ID & question index from URL
+  const [question, setQuestion] = useState(null);
+  const [error, setError] = useState("");
   const [code, setCode] = useState(""); // State to store code input
+
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          `http://localhost:5000/api/v1/practice/coding/${lessonId}/${questionIndex}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        if (!response.ok) throw new Error("Failed to fetch question");
+
+        const data = await response.json();
+        setQuestion(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchQuestion();
+  }, [lessonId, questionIndex]);
+
+  if (error) return <div>Error: {error}</div>;
+  if (!question) return <div>Loading question...</div>;
 
   return (
     <div className="coding-container">
       {/* Header */}
       <div className="coding-header">
-        <Link to="/home" className="header-item">home page</Link>
+        <Link to="/home" className="header-item">homepage</Link>
         <Link to="/dashboard" className="header-item">dashboard</Link>
       </div>
 
@@ -18,10 +47,9 @@ const CodingPage = () => {
         <div className="coding-left">
           {/* Practice Question Section */}
           <div className="practice-question">
-            <h3 className="section-title">Practice Question</h3>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut dignissim purus. Vestibulum porta tellus nec vehicula malesuada. Maecenas eget quam metus. Mauris tincidunt a tortor id volutpat. Nam porttitor tortor vitae iaculis fringilla. Nulla facilisi. Quisque eu lorem id nunc mattis ullamcorper. Integer condimentum accumsan facilisis.
-
-Nullam rhoncus eu libero at lobortis. Nunc ornare nisl augue, ac dignissim diam euismod quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dolor tortor, vestibulum non nisl sit amet, posuere porttitor ex. Vestibulum vel est feugiat, venenatis mi in, placerat ipsum. Nullam a iaculis nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse pharetra est libero, at accumsan nibh pharetra ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam est nisi, varius sit amet urna et, elementum sagittis metus. Donec suscipit vel diam viverra fermentum. Proin sed libero et mi semper facilisis dignissim et nunc. Vivamus libero mauris, iaculis id ullamcorper at, bibendum non nunc. Proin at blandit lacus. Donec diam odio, interdum eu sapien ac, gravida vehicula libero.
+            <h3 className="section-title">{question.questionTitle}</h3>
+            <p><strong>Difficulty:</strong> {question.difficulty}</p>
+            <p>{question.description}</p>
           </div>
         </div>
 

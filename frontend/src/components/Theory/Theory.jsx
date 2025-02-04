@@ -152,7 +152,7 @@ const Theory = () => {
     <div className="theory-container">
       <div className="theory-header">
         <Link to="/" className="header-item">
-          project name
+          CodeMaze
         </Link>
         <Link to="/dashboard" className="header-item">
           dashboard
