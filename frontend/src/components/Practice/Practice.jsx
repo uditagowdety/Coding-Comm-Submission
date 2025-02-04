@@ -12,7 +12,7 @@ const Practice = () => {
     const fetchPracticeQuestions = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5000/api/v1/homepage/practice", {
+        const response = await fetch("http://localhost:5000/api/v1/practice", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -68,20 +68,18 @@ const Practice = () => {
             ref={(el) => (sectionRefs.current[lesson.lessonId] = el)}
           >
             {/* Theory Title */}
-            <div className="theory-title">
-              <Link to="/coding" className="theory-link">
-                {lesson.lessonTitle}
-              </Link>
-            </div>
+            <div className="theory-title">{lesson.lessonTitle}</div>
             {/* Questions List */}
             <ul className="questions-list">
               {lesson.codingQuestions.map((question, index) => (
                 <li key={index} className="question-item">
-                  <div className="question-icon"></div>
-                  <div className="question-text">
-                    <h3>{question.title}</h3>
-                    <p>{question.description}</p>
-                  </div>
+                  <Link to={`/coding/${lesson.lessonId}/${index}`} className="question-link">
+                    <div className="question-icon"></div>
+                    <div className="question-text">
+                      <h3>{question.title}</h3>
+                      <p>{question.description}</p>
+                    </div>
+                  </Link>
                 </li>
               ))}
             </ul>
