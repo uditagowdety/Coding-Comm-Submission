@@ -14,37 +14,42 @@ const Dashboard = () => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          navigate("/login"); // Redirect if no token
+          navigate("/login");
           return;
         }
-
-        // Fetch user stats
+  
         const response = await fetch("http://localhost:5000/api/v1/dashboard", {
           headers: { Authorization: `Bearer ${token}` },
         });
-
+  
         if (!response.ok) throw new Error("Failed to fetch user data");
-
+  
         const data = await response.json();
         setUserData(data);
-
-        // Fetch recommended lessons
+  
         const recResponse = await fetch("http://localhost:5000/api/v1/dashboard/recommended", {
           headers: { Authorization: `Bearer ${token}` },
         });
-
+  
         if (!recResponse.ok) throw new Error("Failed to fetch recommended lessons");
-
+  
         const recData = await recResponse.json();
         setRecommendedLessons(recData.recommendedLessons);
       } catch (err) {
         setError(err.message);
       }
     };
-
-    fetchDashboardData();
+  
+    fetchDashboardData(); // Initial fetch
+  
+    // ✅ Listen for updates when a lesson is completed
+    const updateListener = () => fetchDashboardData();
+    window.addEventListener("dashboardUpdate", updateListener);
+  
+    return () => window.removeEventListener("dashboardUpdate", updateListener);
   }, [navigate]);
-
+  
+  
   // Logout user
   const handleLogout = async () => {
     localStorage.removeItem("token"); // Clear token

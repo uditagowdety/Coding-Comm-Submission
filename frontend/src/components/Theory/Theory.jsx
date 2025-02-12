@@ -104,16 +104,25 @@ const Theory = () => {
       if (!response.ok) throw new Error("Failed to toggle lesson completion");
   
       const updatedProgress = await response.json();
+  
+      // ✅ Update lesson state dynamically
       setLesson((prevLesson) => ({
         ...prevLesson,
-        isCompleted: updatedProgress.lessonProgress.some(p => p.lessonId === id && p.isCompleted),
+        isCompleted: updatedProgress.lessonProgress.some(
+          (p) => p.lessonId === id && p.isCompleted
+        ),
       }));
+  
+      // ✅ Dispatch an event to notify dashboard to refresh stats
+      window.dispatchEvent(new Event("dashboardUpdate"));
     } catch (err) {
       setError("Failed to update lesson");
     }
   };
   
-
+  
+  
+  
   const handleNextLesson = async () => {
     try {
       const token = localStorage.getItem("token");
