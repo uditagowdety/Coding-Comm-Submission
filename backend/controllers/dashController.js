@@ -5,9 +5,24 @@ const Lesson = require("../models/Lesson");
 const getUserDashboard = async (req, res) => {
   try {
     const userId = req.user.id;
-    const user = await User.findById(userId, "username profilePic skillsAchieved problemsSolved streakDays");
+    const user = await User.findById(userId, "username profilePic skillsAchieved problemsSolved streakDays lastLessonDate lessonProgress");
 
     if (!user) return res.status(404).json({ error: "User not found" });
+
+    // ✅ Recalculate completed lessons dynamically
+    const completedLessons = user.lessonProgress.filter(lesson => lesson.isCompleted).length;
+
+    // ✅ Reset streak if no lessons are completed
+    if (completedLessons === 0) {
+      user.streakDays = 0;
+      user.lastLessonDate = null;
+    }
+
+    // ✅ Sync skillsAchieved with actual completed lessons count
+    if (user.skillsAchieved !== completedLessons) {
+      user.skillsAchieved = completedLessons;
+      await user.save();
+    }
 
     res.status(200).json({
       username: user.username,
@@ -21,6 +36,7 @@ const getUserDashboard = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch dashboard data" });
   }
 };
+
 
 // Fetch recommended lessons (e.g., incomplete lessons)
 const getRecommendedLessons = async (req, res) => {
