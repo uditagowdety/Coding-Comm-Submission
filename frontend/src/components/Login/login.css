@@ -12,9 +12,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--dark-blue-1);
+  background-color: var(--background-color); /* Light mode background */
   font-family: var(--font-body);
-  color: var(--text-light);
+  color: var(--text-dark); /* Dark text for contrast */
 }
 
 /* Header */
@@ -24,22 +24,26 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: var(--padding-medium) var(--padding-large);
-  background-color: var(--dark-blue-2);
+  background-color: var(--text-light);
   border-bottom: 1px solid var(--blue);
 }
 
+/* Fix header text color */
 .header-item {
-  font-size: 1.2rem;
-  color: var(--text-light);
-  font-family: var(--font-heading);
-  text-decoration: none;
+  font-size: 1.3rem !important; /* Force consistency */
+  color: var(--text-dark) !important; /* Force dark text */
+  font-family: var(--font-heading) !important; /* Ensure correct font */
+  text-decoration: none !important;
   transition: color 0.3s ease;
 }
 
+/* Hover effect */
 .header-item:hover {
-  color: var(--yellow-1);
+  color: var(--yellow-1) !important;
 }
+
 
 /* Login Card */
 .login-card {
@@ -68,6 +72,8 @@
   border-radius: var(--border-radius);
   font-family: var(--font-body);
   font-size: 1rem;
+  background-color: var(--background-color);
+  color: var(--text-dark);
 }
 
 /* Password Field */
@@ -116,15 +122,15 @@
 }
 
 .register-button {
-  background-color: var(--blue);
-  color: var(--text-light);
-  border: none;
+  background-color: var(--text-light);
+  color: var(--text-dark);
+  border: 1px solid var(--text-dark);
   border-radius: var(--border-radius);
   padding: var(--padding-small) var(--padding-medium);
   cursor: pointer;
   font-family: var(--font-body);
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .register-button:hover {
@@ -136,10 +142,10 @@
 .feedback-placeholder {
   margin-top: var(--padding-small);
   padding: var(--padding-small);
-  background-color: var(--dark-blue-2);
+  background-color: var(--background-color);
   width: 400px;
   text-align: center;
   border-radius: var(--border-radius);
   font-family: var(--font-body);
-  color: var(--text-light);
+  color: var(--text-dark);
 }
