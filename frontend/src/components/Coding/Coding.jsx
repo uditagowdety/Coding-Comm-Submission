@@ -4,6 +4,24 @@ import "./coding.css";
 
 const CodingPage = () => {
   const [code, setCode] = useState(""); // State to store code input
+  const [output, setOutput] = useState(""); // State to store output
+
+  const runCode = async () => {
+    setOutput("Running..."); // Show running status
+
+    try {
+      const response = await fetch("http://localhost:5000/api/run-python", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+
+      const data = await response.json();
+      setOutput(data.output); // Display the output
+    } catch (error) {
+      setOutput("Error running code");
+    }
+  };
 
   return (
     <div className="coding-container">
@@ -19,9 +37,7 @@ const CodingPage = () => {
           {/* Practice Question Section */}
           <div className="practice-question">
             <h3 className="section-title">Practice Question</h3>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut dignissim purus. Vestibulum porta tellus nec vehicula malesuada. Maecenas eget quam metus. Mauris tincidunt a tortor id volutpat. Nam porttitor tortor vitae iaculis fringilla. Nulla facilisi. Quisque eu lorem id nunc mattis ullamcorper. Integer condimentum accumsan facilisis.
-
-Nullam rhoncus eu libero at lobortis. Nunc ornare nisl augue, ac dignissim diam euismod quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dolor tortor, vestibulum non nisl sit amet, posuere porttitor ex. Vestibulum vel est feugiat, venenatis mi in, placerat ipsum. Nullam a iaculis nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse pharetra est libero, at accumsan nibh pharetra ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam est nisi, varius sit amet urna et, elementum sagittis metus. Donec suscipit vel diam viverra fermentum. Proin sed libero et mi semper facilisis dignissim et nunc. Vivamus libero mauris, iaculis id ullamcorper at, bibendum non nunc. Proin at blandit lacus. Donec diam odio, interdum eu sapien ac, gravida vehicula libero.
+            <p>Write a Python function to calculate the factorial of a number.</p>
           </div>
         </div>
 
@@ -30,7 +46,7 @@ Nullam rhoncus eu libero at lobortis. Nunc ornare nisl augue, ac dignissim diam 
           <div className="code-editor">
             <div className="editor-header">
               <h3 className="section-title">Code Editor</h3>
-              <button className="run-button">Run Code</button>
+              <button className="run-button" onClick={runCode}>Run Code</button>
             </div>
             <textarea
               className="code-input"
@@ -41,8 +57,11 @@ Nullam rhoncus eu libero at lobortis. Nunc ornare nisl augue, ac dignissim diam 
           </div>
 
           {/* Output Section */}
-          <div className="output-section">
-            <p>....beep boop computer output</p>
+          <div className="output-box">
+            <h3 className="output-title">Output</h3>
+            <div className="output-content">
+              {output ? <pre>{output}</pre> : <p className="placeholder">Your output will be displayed here...</p>}
+            </div>
           </div>
         </div>
       </div>
