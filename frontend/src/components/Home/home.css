@@ -8,9 +8,9 @@
 /* Main Container */
 .home-container {
   font-family: var(--font-body);
-  background-color: var(--dark-blue-1);
-  color: var(--text-light);
-  min-height: 100vh; /* Use min-height instead of height */
+  background-color: var(--background-color); /* Light mode */
+  color: var(--text-dark);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,39 +18,33 @@
 
 /* Header */
 .home-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: var(--padding-medium) var(--padding-large);
-  background-color: var(--dark-blue-2);
-  border-bottom: 1px solid var(--blue);
-}
-
-.home-header .header-item {
-  color: var(--text-light); /* Explicitly set to white */
+  background-color: var(--text-light);
+  border-bottom: 2px solid var(--blue);
+  z-index: 1000;
 }
 
 .header-item {
   font-size: 1.2rem;
-  color: white; /* White text by default */
+  color: var(--text-dark);
   font-family: var(--font-heading);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .header-item:hover {
-  color: var(--yellow-1); /* Highlighted yellow on hover */
+  color: var(--yellow-1);
 }
 
 /* Welcome Section */
 .welcome-section {
-  margin-top: 4rem;
+  margin-top: 6rem;
   text-align: center;
-}
-
-.welcome-text {
   font-size: 1.8rem;
   font-weight: bold;
 }
@@ -58,9 +52,9 @@
 /* Roadmap */
 .roadmap {
   margin-top: 2rem;
-  width: 60%;
-  flex-grow: 1; /* Allows it to fill available space */
-  overflow-y: auto; /* Only scrolls if content overflows */
+  width: 65%;
+  flex-grow: 1;
+  overflow-y: auto;
   padding-bottom: 2rem;
 }
 
@@ -69,21 +63,26 @@
   display: flex;
   align-items: center;
   margin-bottom: var(--padding-large);
+  padding: var(--padding-small) var(--padding-medium);
+  border-radius: var(--border-radius);
+  background: var(--text-light);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Lesson Circle */
 .circle {
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background-color: var(--dark-blue-2);
+  background-color: var(--text-light);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
-  color: var(--text-light);
-  box-shadow: 0 0 10px var(--blue);
-  opacity: 0.8; /* Make uncompleted lessons more visible */
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  box-shadow: 0 0 5px var(--blue);
+  opacity: 0.8;
+  margin-right: var(--padding-medium);
 }
 
 /* Completed Lessons */
@@ -94,23 +93,22 @@
 }
 
 .checkmark {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
 /* Roadmap Content */
 .roadmap-content {
-  margin-left: var(--padding-medium);
-  flex: 1;
+  flex-grow: 1;
 }
 
 .roadmap-title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .roadmap-subtitle {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--text-dark);
 }
 
@@ -125,10 +123,10 @@
   padding: var(--padding-small) var(--padding-medium);
   border: none;
   border-radius: var(--border-radius);
-  background-color: var(--blue);
-  color: var(--text-light);
+  background-color: var(--yellow-1);
+  color: var(--dark-blue-1);
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-family: var(--font-body);
   font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -141,10 +139,10 @@
 
 /* Footer */
 .footer {
-  background-color: var(--dark-blue-2);
-  color: var(--text-light);
+  background-color: var(--text-light);
+  color: var(--text-dark);
   text-align: center;
   padding: 1rem;
   font-size: 1rem;
-  margin-top: auto; /* Ensures the footer stays at the bottom */
+  margin-top: auto;
 }
