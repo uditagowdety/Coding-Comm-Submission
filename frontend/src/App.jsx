@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import "./App.css";
 import SplashPage from "./components/Splash/Splash";
 import LoginPage from "./components/Login/Login";
 import RegisterPage from "./components/Register/Register";
@@ -8,7 +9,7 @@ import TheoryPage from "./components/Theory/Theory";
 import PracticePage from "./components/Practice/Practice";
 import CodingPage from "./components/Coding/Coding";
 import Dashboard from "./components/Dashboard/Dashboard";
-import "./App.css";
+
 
 const App = () => {
   return (

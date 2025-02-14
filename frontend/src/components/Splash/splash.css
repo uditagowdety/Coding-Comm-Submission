@@ -9,8 +9,8 @@
 .container {
   display: flex;
   height: 100vh;
-  background-color: var(--dark-blue-1); /* Primary dark background */
-  color: var(--text-light); /* Light text for contrast */
+  background-color: var(--background-color); /* Light background */
+  color: var(--text-dark); /* Dark text for contrast */
 }
 
 .left,
@@ -23,7 +23,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  background-color: var(--dark-blue-2); /* Slightly lighter dark blue */
+  background-color: white; /* Light mode background */
   padding: var(--padding-large);
 }
 
@@ -36,20 +36,20 @@
 /* Text Elements */
 .text__box {
   margin-bottom: var(--padding-medium);
-  color: var(--text-light); /* Ensure text is readable */
+  color: var(--text-dark); /* Dark text for readability */
 }
 
 .project__title {
   font-family: var(--font-heading);
-  font-size: 2rem; /* Slightly larger for emphasis */
-  color: var(--text-light); /* Contrast with dark background */
+  font-size: 2rem;
+  color: var(--text-dark); /* Dark text */
 }
 
 .project__subtitle,
 .project__tagline {
   font-family: var(--font-body);
   font-size: 1.2rem;
-  color: var(--text-light);
+  color: var(--text-dark);
 }
 
 /* Buttons */
@@ -71,13 +71,13 @@
 
 .button:hover {
   cursor: pointer;
-  background-color: white; /* Slightly brighter hover state */
-  transform: scale(1.05); /* Add a hover effect */
+  background-color: var(--yellow-2); /* Slightly brighter hover state */
+  transform: scale(1.05);
 }
 
 /* Right Section */
 .right {
-  border-left: 2px solid var(--dark-blue-2); /* Optional visual divider */
+  border-left: 2px solid var(--text-dark); /* Adjust divider to be darker for contrast */
 }
 
 /* Utility Classes for Text Container Spacing */
