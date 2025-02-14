@@ -8,7 +8,7 @@
 /* Container */
 .theory-container {
   font-family: var(--font-body);
-  background-color: var(--text-light);
+  background-color: var(--background-color); /* Light mode background */
 }
 
 /* Header */
@@ -16,15 +16,15 @@
   display: flex;
   justify-content: space-between;
   padding: var(--padding-medium) var(--padding-large);
-  background-color: var(--dark-blue-2);
-  border-bottom: 1px solid var(--dark-blue-1);
+  background-color: var(--text-light); /* Light header */
+  border-bottom: 1px solid var(--blue);
 }
 
 .header-item {
   font-family: var(--font-heading);
   font-size: 1rem;
   text-decoration: none;
-  color: var(--text-light);
+  color: var(--text-dark); /* Dark text for contrast */
 }
 
 /* Main Content */
@@ -45,7 +45,7 @@
 .icon-circle {
   width: 100px;
   height: 100px;
-  background-color: var(--text-dark);
+  background-color: var(--text-dark); /* Darker icon */
   border-radius: 50%;
   margin-bottom: var(--padding-medium);
 }
@@ -54,14 +54,21 @@
   text-align: center;
 }
 
+.lesson-content {
+  font-size: 1rem; /* Reduced body text size */
+  line-height: 1.5;
+  font-weight: normal; /* Ensure uniform weight */
+  color: var(--text-dark); /* Ensure uniform text color */
+}
+
 .lesson-title {
   font-weight: bold;
-  font-size: 2rem;
-  color: var(--text-dark);
+  font-size: 2.5rem; /* Increased title size */
+  color: var(--text-dark); /* Dark text */
 }
 
 .lesson-subtitle {
-  color: var(--dark-blue-2);
+  color: var(--blue); /* Blue shade */
 }
 
 .sublesson-button {
@@ -81,20 +88,24 @@
 }
 
 /* Middle Section */
+.lesson-main-title{
+  font-size: 3rem;
+}
+
 .theory-middle {
   flex: 3;
   padding: 0 var(--padding-medium);
 }
 
 .sublesson-title {
-  font-size: 2rem;
+  font-size: 1.75rem; /* Slightly smaller than before */
   margin-bottom: var(--padding-medium);
   font-weight: bold;
 }
 
 .sublesson-body {
-  font-size: 1.2rem;
-  line-height: 1.6;
+  font-size: 1rem; /* Reduced for readability */
+  line-height: 1.5;
   margin-bottom: var(--padding-large);
 }
 
@@ -109,7 +120,7 @@
 }
 
 .sublesson-content {
-  font-size: 1.35rem;
+  font-size: 1.1rem; /* Slightly smaller */
   line-height: 1.5;
   margin-bottom: var(--padding-medium);
 }
@@ -121,11 +132,11 @@
 }
 
 .button {
-  background-color: white; /* Ensure default yellow background */
-  color: var(--text-dark);
-  border: 1px solid var(--dark-blue-1);
+  background-color: var(--yellow-1); /* Primary yellow buttons */
+  color: var(--dark-blue-1);
+  border: none;
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s;
@@ -136,11 +147,11 @@
   background-color: var(--yellow-2); /* Slightly darker yellow on hover */
 }
 
-/* Right Sidebar (Sticky & Content-Based Height) */
+/* Right Sidebar */
 .theory-right {
   position: sticky;
   top: var(--padding-medium);
-  align-self: flex-start;  /* Makes it span only the height of its content */
+  align-self: flex-start;
   background-color: var(--text-light);
   padding: var(--padding-medium);
   border-radius: var(--border-radius);
@@ -152,6 +163,7 @@
   font-weight: bold;
   margin-bottom: var(--padding-medium);
   color: var(--text-dark);
+  font-size: 1.4rem; /* Adjusted for better hierarchy */
 }
 
 .content-list {
@@ -171,16 +183,28 @@
 }
 
 .practice-button {
-  background-color: var(--dark-blue-2);
-  color: var(--text-light);
+  background-color: var(--yellow-1); /* Primary button color */
+  color: var(--dark-blue-1);
   padding: var(--padding-small) var(--padding-medium);
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
   width: 100%;
   text-align: center;
+  font-weight: bold;
 }
 
 .practice-button:hover {
-  background-color: var(--blue);
+  background-color: var(--yellow-2);
+}
+
+/* Footer */
+.theory-footer {
+  background-color: var(--text-light);
+  color: var(--text-dark);
+  text-align: center;
+  padding: var(--padding-medium);
+  border-top: 1px solid var(--blue);
+  font-size: 1rem;
+  font-family: var(--font-body);
 }

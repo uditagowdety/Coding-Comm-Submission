@@ -198,6 +198,12 @@ const Theory = () => {
           onClick={()=>navigate("/coding")}>practice</button>
         </div>
       </div>
+
+      {/* Footer (Added) */}
+      <footer className="theory-footer">
+        <p>&copy; 2024 CodeMaze. All rights reserved.</p>
+      </footer>
+      
     </div>
   );
 };
