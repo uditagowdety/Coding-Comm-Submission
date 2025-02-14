@@ -6,7 +6,7 @@ const Theory = () => {
   const { id } = useParams();
   const [lesson, setLesson] = useState(null);
   const [error, setError] = useState("");
-  const [isLastLesson, setIsLastLesson] = useState(false); // Track if it's the last lesson
+  const [isLastLesson, setIsLastLesson] = useState(false); 
   const [currentSubLesson, setCurrentSubLesson] = useState(null);
   const contentRefs = useRef({});
   const navigate = useNavigate();
@@ -15,27 +15,49 @@ const Theory = () => {
     const fetchLessonContent = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(
+
+        // Fetch lesson data
+        const lessonResponse = await fetch(
           `http://localhost:5000/api/v1/homepage/lessons/${id}/theory`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        if (!response.ok) throw new Error("Failed to fetch lesson theory content");
+        if (!lessonResponse.ok) throw new Error("Failed to fetch lesson theory content");
 
-        const data = await response.json();
-        setLesson(data);
-        if (data.subLessons.length > 0) setCurrentSubLesson(data.subLessons[0]._id);
+        const lessonData = await lessonResponse.json();
+
+        // Fetch user progress
+        const progressResponse = await fetch(
+          `http://localhost:5000/api/v1/user/progress`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        if (!progressResponse.ok) throw new Error("Failed to fetch user progress");
+
+        const progressData = await progressResponse.json();
+
+        // Find if this lesson is completed for this user
+        const userProgress = progressData.lessonProgress.find(p => p.lessonId === id);
+
+        setLesson({
+          ...lessonData,
+          isCompleted: userProgress ? userProgress.isCompleted : false
+        });
+
+        if (lessonData.subLessons.length > 0) {
+          setCurrentSubLesson(lessonData.subLessons[0]._id);
+        }
 
         // Fetch all lessons to determine if this is the last lesson
         const lessonsResponse = await fetch(
           "http://localhost:5000/api/v1/homepage/lessons",
           { headers: { Authorization: `Bearer ${token}` } }
         );
+
         if (!lessonsResponse.ok) throw new Error("Failed to fetch lessons");
 
         const lessonsData = await lessonsResponse.json();
         const currentIndex = lessonsData.lessons.findIndex((lesson) => lesson._id === id);
 
-        // If the current lesson is the last one, update state
         if (currentIndex === lessonsData.lessons.length - 1) {
           setIsLastLesson(true);
         }
@@ -72,25 +94,35 @@ const Theory = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/homepage/lessons/${id}/complete`,
+        `http://localhost:5000/api/v1/user/progress/${id}`,
         {
           method: "PUT",
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-
+  
       if (!response.ok) throw new Error("Failed to toggle lesson completion");
-
-      const updatedLesson = await response.json();
+  
+      const updatedProgress = await response.json();
+  
+      // ✅ Update lesson state dynamically
       setLesson((prevLesson) => ({
         ...prevLesson,
-        isCompleted: updatedLesson.lesson.isCompleted, // Update isCompleted state
+        isCompleted: updatedProgress.lessonProgress.some(
+          (p) => p.lessonId === id && p.isCompleted
+        ),
       }));
+  
+      // ✅ Dispatch an event to notify dashboard to refresh stats
+      window.dispatchEvent(new Event("dashboardUpdate"));
     } catch (err) {
       setError("Failed to update lesson");
     }
   };
-
+  
+  
+  
+  
   const handleNextLesson = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -129,7 +161,7 @@ const Theory = () => {
     <div className="theory-container">
       <div className="theory-header">
         <Link to="/" className="header-item">
-          project name
+          CodeMaze
         </Link>
         <Link to="/dashboard" className="header-item">
           dashboard
@@ -194,8 +226,9 @@ const Theory = () => {
               </li>
             ))}
           </ul>
-          <button className="practice-button"
-          onClick={()=>navigate("/coding")}>practice</button>
+          <button className="practice-button" onClick={() => navigate(`/practice/${id}`)}>
+            Practice
+          </button>
         </div>
       </div>
 

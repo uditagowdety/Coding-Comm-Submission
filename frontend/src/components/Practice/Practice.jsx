@@ -12,7 +12,7 @@ const Practice = () => {
     const fetchPracticeQuestions = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5000/api/v1/homepage/practice", {
+        const response = await fetch("http://localhost:5000/api/v1/practice", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -67,9 +67,10 @@ const Practice = () => {
             key={lesson.lessonId}
             ref={(el) => (sectionRefs.current[lesson.lessonId] = el)}
           >
+
             {/* Theory Title (No Link Anymore) */}
             <div className="theory-title">{lesson.lessonTitle}</div>
-            
+
             {/* Questions List */}
             <ul className="questions-list">
               {lesson.codingQuestions.map((question, index) => (
@@ -81,6 +82,7 @@ const Practice = () => {
                     </h3>
                     <p>{question.description}</p>
                   </div>
+
                 </li>
               ))}
             </ul>

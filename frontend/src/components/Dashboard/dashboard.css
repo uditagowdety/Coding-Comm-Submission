@@ -145,10 +145,30 @@
     margin-top: 2rem;
 }
 
+.recommended-list {
+    display: flex;
+    gap: var(--padding-medium);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--padding-small);
+}
+
 .recommended-box {
     width: 180px;
     height: 140px;
     background-color: var(--text-dark);
     border-radius: var(--border-radius);
-    margin-top: var(--padding-small);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--text-light);
+    transition: background 0.3s ease-in-out;
+}
+
+.recommended-box:hover {
+    background-color: var(--yellow-1);
+    color: var(--dark-blue-1);
 }

@@ -76,9 +76,15 @@
 /* Individual Question Items */
 .question-item {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: var(--padding-small);
     color: var(--text-dark); /* Dark text */
+}
+.question-link{
+    display: flex;
+    align-items: center;
+    gap:5px;
 }
 
 /* Question Icon */
