@@ -7,8 +7,8 @@ const Dashboard = () => {
     <div className="dashboard-container">
       {/* Header */}
       <div className="dashboard-header">
-        <Link to="/" className="header-item">project name</Link>
-        <Link to="/homepage" className="header-item">homepage</Link>
+        <Link to="/" className="header-item">CodeMaze</Link>
+        <Link to="/homepage" className="header-item">Homepage</Link>
       </div>
 
       {/* Dashboard Content */}
