@@ -28,29 +28,41 @@ const registerUser = async (req, res) => {
 
 // Login User
 const loginUser = async (req, res) => {
-    try {
-      const { username, password } = req.body;
-  
-      // Find user by username
-      const user = await User.findOne({ username });
-      if (!user) return res.status(404).json({ error: 'User not found' });
-  
-      // Check if the provided password matches the hashed password in the database
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) return res.status(401).json({ error: 'Invalid credentials' });
-  
-      // Generate JWT token
-      const token = jwt.sign(
-        { id: user._id, username: user.username }, // Include username here
-        process.env.JWT_SECRET,
-        { expiresIn: '1h' }
-      );
-  
-      res.status(200).json({ token });
-    } catch (err) {
-      res.status(500).json({ error: err.message });
+  try {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ error: 'All fields are required' });
     }
-  };
+
+    // ✅ Find user by username
+    const user = await User.findOne({ username });
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    // ✅ Check if password matches
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ error: 'Invalid credentials' });
+
+    // ✅ Ensure `JWT_SECRET` is set
+    if (!process.env.JWT_SECRET) {
+      console.error("❌ JWT_SECRET is not defined in environment variables!");
+      return res.status(500).json({ error: "Internal server error" });
+    }
+
+    // ✅ Generate JWT token
+    const token = jwt.sign(
+      { id: user._id, username: user.username },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.status(200).json({ token });
+  } catch (err) {
+    console.error("❌ Login Error:", err.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
   const dashboard = async (req, res) => {
     try {
       // `req.user` is populated by the `authenticate` middleware
