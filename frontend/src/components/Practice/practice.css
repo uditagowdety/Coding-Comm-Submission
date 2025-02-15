@@ -8,9 +8,8 @@
 /* Main Container */
 .practice-container {
     font-family: var(--font-body);
-    background-color: var(--dark-blue-1);
+    background-color: var(--background-color); /* Light mode */
     min-height: 100vh;
-    /* padding: var(--padding-medium) var(--padding-large); */
 }
 
 /* Header */
@@ -18,7 +17,7 @@
     display: flex;
     justify-content: space-between;
     padding: var(--padding-medium) var(--padding-large);
-    background-color: var(--dark-blue-2);
+    background-color: var(--text-light); /* Light mode */
     border-bottom: 1px solid var(--blue);
 }
 
@@ -26,7 +25,7 @@
 .header-item {
     font-family: var(--font-heading);
     font-size: 1rem;
-    color: white;
+    color: var(--text-dark); /* Dark text for contrast */
     text-decoration: none;
 }
 
@@ -37,7 +36,7 @@
     font-size: 1.8rem;
     font-weight: bold;
     line-height: 1.5;
-    color: var(--text-light);
+    color: var(--text-dark); /* Dark text */
 }
 
 .practice-title .emoji {
@@ -56,12 +55,12 @@
 
 /* Theory Section Titles */
 .theory-title {
-    background-color: var(--blue);
+    background-color: var(--yellow-1); /* Light mode yellow */
     padding: var(--padding-medium);
     border-radius: var(--border-radius);
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--text-light);
+    color: var(--dark-blue-1); /* Dark text for contrast */
     margin-bottom: var(--padding-medium);
 }
 
@@ -71,7 +70,7 @@
     flex-direction: column;
     gap: var(--padding-medium);
     padding-left: var(--padding-medium);
-    border-left: 2px solid var(--yellow-1);
+    border-left: 2px solid var(--blue); /* Updated to blue for contrast */
 }
 
 /* Individual Question Items */
@@ -80,7 +79,7 @@
     flex-direction: row;
     align-items: center;
     gap: var(--padding-small);
-    color: var(--text-light);
+    color: var(--text-dark); /* Dark text */
 }
 .question-link{
     display: flex;
@@ -92,6 +91,17 @@
 .question-icon {
     width: 12px;
     height: 12px;
-    background-color: var(--yellow-2);
+    background-color: var(--yellow-2); /* Light mode */
     border-radius: 50%;
 }
+
+/* Footer Styling */
+.footer {
+    text-align: center;
+    padding: var(--padding-medium);
+    background-color: var(--text-light);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    /* border-top: 1px solid var(--blue); */
+  }  

@@ -67,26 +67,36 @@ const Practice = () => {
             key={lesson.lessonId}
             ref={(el) => (sectionRefs.current[lesson.lessonId] = el)}
           >
-            {/* Theory Title */}
+
+            {/* Theory Title (No Link Anymore) */}
             <div className="theory-title">{lesson.lessonTitle}</div>
+
             {/* Questions List */}
             <ul className="questions-list">
               {lesson.codingQuestions.map((question, index) => (
                 <li key={index} className="question-item">
-                  <Link to={`/coding/${lesson.lessonId}/${index}`} className="question-link">
-                    <div className="question-icon"></div>
-                    <div className="question-text">
-                      <h3>{question.title}</h3>
-                      <p>{question.description}</p>
-                    </div>
-                  </Link>
+                  <div className="question-icon"></div>
+                  <div className="question-text">
+                    <h3>
+                      <Link to="/coding" className="question-link">{question.title}</Link>
+                    </h3>
+                    <p>{question.description}</p>
+                  </div>
+
                 </li>
               ))}
             </ul>
           </div>
         ))}
       </div>
+
+      <footer className="footer">
+        <p>© {new Date().getFullYear()} CodeMaze. All rights reserved.</p>
+      </footer>
+
     </div>
+
+    
   );
 };
 

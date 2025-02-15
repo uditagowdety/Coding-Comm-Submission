@@ -1,24 +1,26 @@
 /* app.css (or variables.css) */
 :root {
-    /* Color Palette */
-    --dark-blue-1: #000814;
-    --dark-blue-2: #001d3d;
-    --blue: #003566;
-    --yellow-1: #ffc300;
-    --yellow-2: #ffd60a;
-    --text-light: #ffffff;
-    --text-dark: #333333;
+  /* Color Palette */
+  --dark-blue-1: #000814;
+  --dark-blue-2: #001d3d;
+  --blue: #003566;
+  --yellow-1: #ffc300;
+  --yellow-2: #ffd60a;
+  --text-light: #ffffff;
+  --text-dark: #333333;
   
-    /* Font Families */
-    --font-heading: 'Press Start 2P', sans-serif;
-    --font-body: 'Instrument Sans', sans-serif;
-  
-    /* Spacing */
-    --padding-small: 0.5rem;
-    --padding-medium: 1rem;
-    --padding-large: 1.5rem;
-  
-    /* Borders */
-    --border-radius: 8px;
-  }
-  
+  /* Light Mode Background */
+  --background-color: #f8f9fa; /* Off-white background */
+
+  /* Font Families */
+  --font-heading: 'Press Start 2P', sans-serif;
+  --font-body: 'Instrument Sans', sans-serif;
+
+  /* Spacing */
+  --padding-small: 0.5rem;
+  --padding-medium: 1rem;
+  --padding-large: 1.5rem;
+
+  /* Borders */
+  --border-radius: 8px;
+}

@@ -8,8 +8,8 @@
 /* Main Container */
 .dashboard-container {
     font-family: var(--font-body);
-    background-color: var(--dark-blue-1);
-    color: var(--text-light);
+    background-color: var(--background-color); /* Light mode background */
+    color: var(--text-dark); /* Dark text for contrast */
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -23,12 +23,13 @@
     display: flex;
     justify-content: space-between;
     padding: var(--padding-medium) var(--padding-large);
-    background-color: var(--dark-blue-2);
+    background-color: var(--text-light); /* Light header */
+    border-bottom: 1px solid var(--blue);
 }
 
 .header-item {
     font-size: 1.3rem;
-    color: var(--text-light);
+    color: var(--text-dark); /* Dark text for contrast */
     font-family: var(--font-heading);
     text-decoration: none;
 }
@@ -52,7 +53,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--dark-blue-2);
+    background-color: var(--blue);
     padding: var(--padding-medium);
     border-radius: var(--border-radius);
 }
@@ -65,7 +66,7 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-color: var(--text-dark);
+    background-color: var(--text-light);
     margin-bottom: var(--padding-small);
     position: relative;
 }
@@ -84,6 +85,7 @@
 .learner-name {
     font-size: 1.5rem;
     font-weight: bold;
+    color: var(--text-light);
 }
 
 .learner-username {
@@ -127,7 +129,7 @@
 
 .stat-box {
     text-align: center;
-    background-color: var(--blue);
+    background-color: var(--yellow-1);
     padding: var(--padding-small) var(--padding-medium);
     border-radius: var(--border-radius);
 }

@@ -19,6 +19,23 @@ const CodingPage = () => {
     { id: "62", name: "Java" },
     { id: "63", name: "JavaScript" },
   ];
+  
+  const runCode = async () => {
+    setOutput("Running..."); // Show running status
+
+    try {
+      const response = await fetch("http://localhost:5000/api/run-python", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+
+      const data = await response.json();
+      setOutput(data.output); // Display the output
+    } catch (error) {
+      setOutput("Error running code");
+    }
+  };
 
   useEffect(() => {
     const fetchQuestion = async () => {
@@ -85,9 +102,8 @@ const CodingPage = () => {
       <div className="coding-main">
         <div className="coding-left">
           <div className="practice-question">
-            <h3 className="section-title">{question.questionTitle}</h3>
-            <p><strong>Difficulty:</strong> {question.difficulty}</p>
-            <p>{question.description}</p>
+            <h3 className="section-title">Practice Question</h3>
+            <p>Write a Python function to calculate the factorial of a number.</p>
           </div>
         </div>
 
@@ -120,10 +136,12 @@ const CodingPage = () => {
             />
           </div>
 
-          {/* ✅ Output Section */}
-          <div className="output-section">
-            <h3>Output:</h3>
-            <pre>{output}</pre>
+          {/* Output Section */}
+          <div className="output-box">
+            <h3 className="output-title">Output</h3>
+            <div className="output-content">
+              {output ? <pre>{output}</pre> : <p className="placeholder">Your output will be displayed here...</p>}
+            </div>
           </div>
         </div>
       </div>
