@@ -64,7 +64,7 @@ const Dashboard = () => {
       {/* Header */}
       <div className="dashboard-header">
         <Link to="/" className="header-item">CodeMaze</Link>
-        <Link to="/homepage" className="header-item">Homepage</Link>
+        <Link to="/home" className="header-item">Homepage</Link>
       </div>
 
       {/* Dashboard Content */}

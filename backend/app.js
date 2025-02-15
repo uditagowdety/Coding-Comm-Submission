@@ -5,6 +5,7 @@ const homepageRoutes = require('./routes/homePage');
 const progressRoutes = require('./routes/userProgress');
 const practiceRoutes = require('./routes/practiceRoutes');
 const dashboardRoutes = require("./routes/dashRoutes");
+const compilerRoutes = require("./routes/compilerRoutes");
 
 const cors = require('cors');
 require('dotenv').config();
@@ -21,6 +22,7 @@ app.use('/api/v1/homepage', homepageRoutes);
 app.use('/api/v1/user', progressRoutes);
 app.use('/api/v1/practice', practiceRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
+app.use("/api/v1/compiler", compilerRoutes); 
 
 // Serve static files from the frontend build folder
 /*const frontendPath = path.join(__dirname, '../frontend/build');
