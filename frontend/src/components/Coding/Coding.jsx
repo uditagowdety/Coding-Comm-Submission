@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import axios from "axios"; // ✅ Import axios for API calls
 import "./coding.css";
 
 const CodingPage = () => {
-  const { lessonId, questionIndex } = useParams(); // Get lesson ID & question index from URL
+  const { lessonId, questionIndex } = useParams();
   const [question, setQuestion] = useState(null);
   const [error, setError] = useState("");
-  const [code, setCode] = useState(""); // State to store code input
+  const [code, setCode] = useState("");
+  const [language, setLanguage] = useState("71"); // Default to Python (Judge0 ID: 71)
+  const [output, setOutput] = useState(""); // Store the output
+
+  // Supported languages (Judge0 language IDs)
+  const languages = [
+    { id: "71", name: "Python 3" },
+    { id: "54", name: "C++" },
+    { id: "50", name: "C" },
+    { id: "62", name: "Java" },
+    { id: "63", name: "JavaScript" },
+  ];
 
   useEffect(() => {
     const fetchQuestion = async () => {
@@ -31,21 +43,47 @@ const CodingPage = () => {
     fetchQuestion();
   }, [lessonId, questionIndex]);
 
+  // ✅ Run Code Function (Sends code to Judge0 API)
+  const handleRunCode = async () => {
+    setOutput("Running code..."); // Indicate loading state
+    const JUDGE0_API_URL = "https://judge0-ce.p.rapidapi.com/submissions";
+    const JUDGE0_API_KEY = "YOUR_RAPIDAPI_KEY"; // ⚠️ Replace with your actual API key
+
+    try {
+      const response = await axios.post(
+        `${JUDGE0_API_URL}?base64_encoded=false&wait=true`, // Waits for result
+        {
+          source_code: code,
+          language_id: language, // Send selected language ID
+          stdin: "", // No input for now
+        },
+        {
+          headers: {
+            "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+            "X-RapidAPI-Key": JUDGE0_API_KEY,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      setOutput(response.data.stdout || response.data.stderr || "No output");
+    } catch (error) {
+      setOutput("Error running code");
+    }
+  };
+
   if (error) return <div>Error: {error}</div>;
   if (!question) return <div>Loading question...</div>;
 
   return (
     <div className="coding-container">
-      {/* Header */}
       <div className="coding-header">
         <Link to="/home" className="header-item">homepage</Link>
         <Link to="/dashboard" className="header-item">dashboard</Link>
       </div>
 
-      {/* Main Content */}
       <div className="coding-main">
         <div className="coding-left">
-          {/* Practice Question Section */}
           <div className="practice-question">
             <h3 className="section-title">{question.questionTitle}</h3>
             <p><strong>Difficulty:</strong> {question.difficulty}</p>
@@ -54,12 +92,26 @@ const CodingPage = () => {
         </div>
 
         <div className="coding-right">
-          {/* Code Editor Section */}
           <div className="code-editor">
             <div className="editor-header">
               <h3 className="section-title">Code Editor</h3>
-              <button className="run-button">Run Code</button>
+
+              {/* 🔹 Language Selector */}
+              <select
+                className="language-selector"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+              >
+                {languages.map((lang) => (
+                  <option key={lang.id} value={lang.id}>
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
+
+              <button className="run-button" onClick={handleRunCode}>Run Code</button>
             </div>
+            
             <textarea
               className="code-input"
               value={code}
@@ -68,9 +120,10 @@ const CodingPage = () => {
             />
           </div>
 
-          {/* Output Section */}
+          {/* ✅ Output Section */}
           <div className="output-section">
-            <p>....beep boop computer output</p>
+            <h3>Output:</h3>
+            <pre>{output}</pre>
           </div>
         </div>
       </div>
