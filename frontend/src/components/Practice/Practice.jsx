@@ -78,14 +78,10 @@ const Practice = () => {
                   <div className="question-icon"></div>
                   <div className="question-text">
                     <h3>
-                    <Link to={`/coding/${lesson.lessonId}/${index}`} className="question-link">
-  {question.title}
-</Link>
-
+                    <Link to={`/coding/${lesson.lessonId}/${index}`} className="question-link">{question.title}</Link>
                     </h3>
                     <p>{question.description}</p>
                   </div>
-
                 </li>
               ))}
             </ul>

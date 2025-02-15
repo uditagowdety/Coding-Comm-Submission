@@ -19,11 +19,12 @@ const CodingPage = () => {
     { id: "62", name: "Java" },
     { id: "63", name: "JavaScript" },
   ];
-  
 
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
+        setQuestion(null); // ✅ Reset before fetching new data
+
         const token = localStorage.getItem("token");
         const response = await fetch(
           `http://localhost:5000/api/v1/practice/coding/${lessonId}/${questionIndex}`,
@@ -31,36 +32,35 @@ const CodingPage = () => {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-  
+
         if (!response.ok) throw new Error("Failed to fetch question");
-  
+
         const data = await response.json();
-        setQuestion(data);
+        setQuestion(data); // ✅ Ensures correct question loads
       } catch (err) {
         setError(err.message);
       }
     };
-  
+
     fetchQuestion();
-  }, [lessonId, questionIndex]);
-  
+  }, [lessonId, questionIndex]); // ✅ Depend on both values
+
   // ✅ Run Code Function (Sends code to Judge0 API)
   const handleRunCode = async () => {
     setOutput("Running code..."); // Indicate processing state
-  
+
     try {
       const response = await axios.post("http://localhost:5000/api/v1/compiler/run", {
         sourceCode: code,
         languageId: language,
         stdin: "", // Optional input
       });
-  
+
       setOutput(response.data.stdout || response.data.stderr || "No output");
     } catch (error) {
       setOutput("Error running code");
     }
   };
-  
 
   if (error) return <div>Error: {error}</div>;
   if (!question) return <div>Loading question...</div>;
@@ -76,7 +76,7 @@ const CodingPage = () => {
         <div className="coding-left">
           <div className="practice-question">
             <h3 className="section-title">Practice Question</h3>
-            <p>Write a Python function to calculate the factorial of a number.</p>
+            <p>{question.description || "Loading question..."}</p> {/* ✅ Dynamic question text */}
           </div>
         </div>
 
