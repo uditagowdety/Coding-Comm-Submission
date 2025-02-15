@@ -93,9 +93,10 @@ const Dashboard = () => {
               <p>Problems Solved</p>
             </div>
             <div className="stat-box">
-              <h3>{userData.streakDays}</h3>
-              <p>Streak Days 🔥</p>
-            </div>
+  <h3>{userData.streakDays}</h3>
+  <p>Streak Days 🔥</p>
+</div>
+
           </div>
         </div>
       </div>
