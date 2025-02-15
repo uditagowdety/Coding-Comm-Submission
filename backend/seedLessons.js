@@ -17,193 +17,283 @@ const lessons = [
   {
     title: "Introduction to Programming",
     subtitle: "Lesson 1",
-    theoryContent:
-      "Programming is the process of designing and building an executable computer program to accomplish a specific computing result. It is the foundation of all software development, allowing us to create applications that solve problems, automate tasks, and enable new possibilities. Programming involves writing a sequence of instructions using a programming language that a computer can interpret and execute.",
+    theoryContent: "",
     subLessons: [
       {
         title: "What is Programming?",
-        content:
-          "Programming is the act of creating step-by-step instructions that a computer can follow to achieve a desired outcome. It encompasses a wide range of activities, including designing algorithms, writing code, and debugging errors. With programming, developers can create anything from simple tools to advanced systems like artificial intelligence, video games, and business software. Modern programming emphasizes efficiency, scalability, and collaboration to build robust solutions for real-world problems.",
+        content: "Programming is the process of designing and writing instructions that a computer can execute. It enables us to create applications, automate tasks, and solve problems efficiently."
       },
       {
         title: "Programming Languages",
-        content:
-          "Programming languages are the tools used to write instructions for computers. They are categorized into low-level (e.g., assembly) and high-level (e.g., Python) languages. Each programming language has its syntax, paradigms, and best-use cases. For example, Python is known for its simplicity and is often used in data analysis and AI. JavaScript powers the web, enabling dynamic and interactive applications. C++ is used for performance-critical tasks, while Java is common in enterprise applications. Choosing the right programming language depends on the problem at hand, the environment, and the desired performance.",
+        content: "There are various programming languages, each suited for different purposes. High-level languages like Python and JavaScript are user-friendly, whereas low-level languages like C and Assembly offer more control over hardware."
       },
       {
         title: "Hello World Program",
-        content:
-          "A 'Hello World' program is traditionally the simplest program that outputs 'Hello, World!' to the console. It serves as an introductory exercise for a new programming language, demonstrating the language's syntax and ensuring that the development environment is correctly set up. For example:\n\n" +
-          "**In Python**:\n```python\nprint('Hello, World!')\n```\n" +
-          "**In JavaScript**:\n```javascript\nconsole.log('Hello, World!');\n```\n" +
-          "**In C++**:\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    cout << 'Hello, World!' << endl;\n    return 0;\n}\n```\n" +
-          "This small step marks the beginning of your programming journey.",
-      },
+        content: "The first step in learning a programming language is writing a 'Hello, World!' program, which simply prints a message to the screen."
+      }
     ],
     codingQuestions: [
       {
         title: "Reverse a String",
         difficulty: "Easy",
-        description:
-          "Write a function that takes a string as input and returns the string reversed. For example, 'hello' should become 'olleh'.",
-      },
-    ],
+        description: "Write a function that reverses a given string."
+      }
+    ]
   },
   {
     title: "Data Structures",
     subtitle: "Lesson 2",
-    theoryContent:
-      "Data structures are a way to organize, manage, and store data efficiently, enabling faster and easier access or manipulation. They form the backbone of computer programs and algorithms. The choice of data structure directly impacts the performance of an application. By mastering data structures, you can design systems that scale well and solve complex problems effectively.",
+    theoryContent: "",
     subLessons: [
       {
         title: "Introduction to Arrays",
-        content:
-          "An array is a collection of elements stored in contiguous memory locations. It allows you to store multiple values of the same type under a single variable. Arrays provide fast access by index, making them ideal for scenarios where you know the size of your data in advance. For example:\n\n" +
-          "**In Python**:\n```python\narr = [1, 2, 3, 4, 5]\nprint(arr[2])  # Outputs: 3\n```\n" +
-          "Arrays are efficient for retrieval operations but have limitations such as fixed size and costly insertions/deletions in the middle.",
+        content: "Arrays store elements in contiguous memory locations, allowing efficient access but fixed size."
       },
       {
         title: "Introduction to Linked Lists",
-        content:
-          "Linked lists are dynamic data structures consisting of nodes. Each node contains data and a pointer to the next node. Unlike arrays, linked lists allow efficient insertions and deletions without resizing. However, accessing an element requires traversing the list. For example:\n\n" +
-          "**In Python**:\n```python\nclass Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nhead = Node(1)\nhead.next = Node(2)\nhead.next.next = Node(3)\n```\n" +
-          "Linked lists are commonly used in scenarios like implementing stacks, queues, or dynamic memory allocation.",
+        content: "A linked list consists of nodes, each containing data and a reference to the next node. Unlike arrays, linked lists allow dynamic resizing but require sequential access."
       },
       {
         title: "Stacks and Queues",
-        content:
-          "Stacks and queues are specialized data structures with specific rules for managing elements. A stack operates on a LIFO (Last In, First Out) basis, meaning the last added item is the first to be removed. It is used in undo functionality, parsing expressions, and function calls. A queue operates on a FIFO (First In, First Out) basis, meaning the first item added is the first to be removed. Queues are used in scheduling tasks and managing resources in operating systems.",
-      },
+        content: "Stacks follow LIFO (Last In, First Out), whereas Queues follow FIFO (First In, First Out). Both are used for structured data handling."
+      }
     ],
     codingQuestions: [
       {
         title: "Implement a Stack",
         difficulty: "Medium",
-        description:
-          "Write a class to implement a stack with push, pop, and peek operations. Ensure the implementation adheres to the LIFO principle.",
-      },
-    ],
+        description: "Write a class to implement a stack with push and pop operations."
+      }
+    ]
   },
   {
     title: "Control Flow",
     subtitle: "Lesson 3",
-    theoryContent:
-      "Control flow in programming refers to the order in which individual instructions, statements, or functions are executed or evaluated. By using control flow constructs like loops, conditionals, and switches, developers can create programs that make decisions, repeat tasks, or break down complex problems into manageable parts.",
+    theoryContent: "",
     subLessons: [
       {
         title: "If-Else Statements",
-        content:
-          "The 'if-else' statement allows a program to take different actions based on conditions. This is essential for decision-making in programs. For example:\n\n" +
-          "**In Python**:\n```python\nx = 10\nif x > 5:\n    print('x is greater than 5')\nelse:\n    print('x is less than or equal to 5')\n```\n" +
-          "This structure ensures that the appropriate code block is executed based on the condition.",
+        content: "Conditional statements allow programs to make decisions based on conditions."
       },
       {
         title: "For Loops",
-        content:
-          "For loops are used to iterate over a sequence, such as a list, string, or range of numbers. They are essential for tasks like processing arrays or repeating actions. For example:\n\n" +
-          "**In Python**:\n```python\nfor i in range(5):\n    print(i)\n```\n" +
-          "This loop will output numbers from 0 to 4. Loops make repetitive tasks easier to manage and reduce redundancy.",
+        content: "For loops help execute a block of code a specified number of times."
       },
       {
         title: "While Loops",
-        content:
-          "While loops are used when the number of iterations is not known in advance. The loop continues until a specified condition becomes false. For example:\n\n" +
-          "**In Python**:\n```python\ncount = 0\nwhile count < 5:\n    print(count)\n    count += 1\n```\n" +
-          "This loop prints numbers from 0 to 4. Use while loops for scenarios where the exit condition is determined dynamically.",
-      },
+        content: "While loops run as long as a given condition is true, useful when the number of iterations is unknown."
+      }
     ],
     codingQuestions: [
       {
-        title: "FizzBuzz Problem",
+        title: "FizzBuzz",
         difficulty: "Easy",
-        description:
-          "Write a program that prints numbers from 1 to 100. For multiples of 3, print 'Fizz' instead of the number, and for multiples of 5, print 'Buzz'. For numbers that are multiples of both 3 and 5, print 'FizzBuzz'.",
-      },
-    ],
+        description: "Print numbers 1 to 100, but for multiples of 3 print 'Fizz', for multiples of 5 print 'Buzz', and for multiples of both print 'FizzBuzz'."
+      }
+    ]
   },
   {
     title: "Object-Oriented Programming",
     subtitle: "Lesson 4",
-    theoryContent:
-      "Object-Oriented Programming (OOP) is a programming paradigm based on the concept of objects, which can contain data in the form of attributes and code in the form of methods. OOP allows developers to model real-world entities, reuse code, and create modular, maintainable programs.",
+    theoryContent: "",
     subLessons: [
       {
         title: "Classes and Objects",
-        content:
-          "A class is a blueprint for creating objects, and objects are instances of classes. For example:\n\n" +
-          "**In Python**:\n```python\nclass Car:\n    def __init__(self, brand, model):\n        self.brand = brand\n        self.model = model\n\nmy_car = Car('Toyota', 'Corolla')\nprint(my_car.brand)\n```\n" +
-          "Here, `Car` is a class, and `my_car` is an object of that class.",
+        content: "Classes are blueprints for creating objects in object-oriented programming."
       },
       {
         title: "Inheritance",
-        content:
-          "Inheritance allows a class to inherit properties and methods from another class, promoting code reuse. For example:\n\n" +
-          "**In Python**:\n```python\nclass Animal:\n    def speak(self):\n        print('I am an animal')\n\nclass Dog(Animal):\n    pass\n\ndog = Dog()\ndog.speak()\n```\n" +
-          "The `Dog` class inherits the `speak` method from the `Animal` class.",
+        content: "Inheritance allows one class to derive properties and methods from another."
       },
       {
         title: "Encapsulation",
-        content:
-          "Encapsulation is the bundling of data and methods that operate on the data within one class. It also restricts access to some components. For example:\n\n" +
-          "**In Python**:\n```python\nclass Account:\n    def __init__(self, balance):\n        self.__balance = balance\n\n    def get_balance(self):\n        return self.__balance\n\naccount = Account(1000)\nprint(account.get_balance())\n```\n" +
-          "The `__balance` attribute is private and can only be accessed via the `get_balance` method.",
-      },
+        content: "Encapsulation restricts direct access to object data, promoting data security and integrity."
+      }
     ],
     codingQuestions: [
       {
-        title: "Design a Bank Account Class",
+        title: "Bank Account Class",
         difficulty: "Medium",
-        description:
-          "Create a class `BankAccount` with attributes `balance` and methods `deposit` and `withdraw`. Ensure that withdrawals do not exceed the balance.",
-      },
-    ],
+        description: "Create a class `BankAccount` with deposit and withdraw methods."
+      }
+    ]
   },
   {
     title: "Recursion",
     subtitle: "Lesson 5",
-    theoryContent:
-      "Recursion is a technique in which a function calls itself to solve a problem. Recursive solutions are often cleaner and more elegant for problems that can be broken into smaller subproblems.",
+    theoryContent: "",
     subLessons: [
       {
         title: "Understanding Recursion",
-        content:
-          "A recursive function calls itself to perform a task. Each recursive call solves a smaller instance of the problem until a base case is reached. For example:\n\n" +
-          "**In Python**:\n```python\ndef factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n-1)\n\nprint(factorial(5))  # Outputs: 120\n```\n" +
-          "Here, `factorial(5)` calls itself with smaller values until it reaches 0, the base case.",
+        content: "Recursion is a technique where a function calls itself to solve a problem."
       },
       {
         title: "Base Case and Recursive Case",
-        content:
-          "A recursive function must have a base case to prevent infinite recursion. The recursive case defines how the function reduces the problem size. For example:\n\n" +
-          "**In Python**:\n```python\ndef sum_array(arr):\n    if len(arr) == 0:\n        return 0  # Base case\n    return arr[0] + sum_array(arr[1:])  # Recursive case\n```\n" +
-          "This function sums all elements of an array by reducing its size on each call.",
+        content: "A base case stops the recursion, preventing infinite loops."
       },
       {
         title: "Recursion vs Iteration",
-        content:
-          "Many problems solved with recursion can also be solved iteratively. While recursion provides a cleaner approach, it may lead to stack overflow for deep recursion. Iteration is generally more memory-efficient. For example:\n\n" +
-          "**In Python** (Iterative Fibonacci):\n```python\ndef fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\nprint(fibonacci(10))\n```\n" +
-          "This iterative approach avoids the overhead of recursive calls.",
-      },
+        content: "Recursive functions can be converted into iterative ones, often improving efficiency."
+      }
     ],
     codingQuestions: [
       {
-        title: "Calculate Fibonacci Numbers Recursively",
+        title: "Fibonacci Sequence",
         difficulty: "Easy",
-        description:
-          "Write a recursive function to calculate the nth Fibonacci number. Ensure that your function handles the base cases correctly.",
-      },
-    ],
+        description: "Write a recursive function to generate Fibonacci numbers."
+      }
+    ]
   },
-  // Additional lessons can be similarly expanded with longer and richer content.
+  {
+    title: "Algorithms and Complexity",
+    subtitle: "Lesson 6",
+    theoryContent: "",
+    subLessons: [
+      {
+        title: "Understanding Algorithms",
+        content: "An algorithm is a sequence of steps to solve a problem efficiently."
+      },
+      {
+        title: "Big-O Notation",
+        content: "Big-O notation helps measure the efficiency of algorithms in terms of time and space complexity."
+      },
+      {
+        title: "Algorithmic Paradigms",
+        content: "Common paradigms include Divide and Conquer, Greedy, and Dynamic Programming."
+      }
+    ],
+    codingQuestions: [
+      {
+        title: "Binary Search",
+        difficulty: "Medium",
+        description: "Implement binary search on a sorted array."
+      }
+    ]
+  },
+  {
+    title: "Sorting Algorithms",
+    subtitle: "Lesson 7",
+    theoryContent: "",
+    subLessons: [
+      {
+        title: "Bubble Sort and Selection Sort",
+        content: "Basic sorting techniques that work by repeatedly swapping or selecting the smallest element."
+      },
+      {
+        title: "Merge Sort and Quick Sort",
+        content: "Efficient sorting algorithms that use Divide and Conquer strategies."
+      },
+      {
+        title: "Time Complexity of Sorting",
+        content: "Sorting algorithms vary in complexity from O(n^2) to O(n log n)."
+      }
+    ],
+    codingQuestions: [
+      {
+        title: "Merge Sort",
+        difficulty: "Medium",
+        description: "Implement Merge Sort and sort an array."
+      }
+    ]
+  },
+  {
+    title: "Graph Theory",
+    subtitle: "Lesson 8",
+    theoryContent: "",
+    subLessons: [
+      {
+        title: "Introduction to Graphs",
+        content: "Graphs represent relationships between entities using nodes and edges."
+      },
+      {
+        title: "Graph Traversal Algorithms",
+        content: "Breadth-First Search (BFS) and Depth-First Search (DFS) explore graphs efficiently."
+      },
+      {
+        title: "Shortest Path Algorithms",
+        content: "Dijkstra's and Floyd-Warshall algorithms help find shortest paths in graphs."
+      }
+    ],
+    codingQuestions: [
+      {
+        title: "Graph Traversal",
+        difficulty: "Hard",
+        description: "Implement BFS and DFS on a given graph."
+      }
+    ]
+  },
+  {
+    title: "Dynamic Programming",
+    subtitle: "Lesson 9",
+    theoryContent: "",
+    subLessons: [
+      {
+        title: "What is Dynamic Programming?",
+        content: "Dynamic Programming (DP) solves problems by breaking them into overlapping subproblems."
+      },
+      {
+        title: "Memoization vs Tabulation",
+        content: "Memoization stores results of previous calculations, while tabulation builds solutions iteratively."
+      },
+      {
+        title: "Famous DP Problems",
+        content: "Classic problems include Fibonacci, Knapsack, and Longest Common Subsequence."
+      }
+    ],
+    codingQuestions: [
+      {
+        title: "Knapsack Problem",
+        difficulty: "Hard",
+        description: "Implement the 0/1 Knapsack problem using Dynamic Programming."
+      }
+    ]
+  },
+  {
+    title: "Databases and SQL",
+    subtitle: "Lesson 10",
+    theoryContent: "",
+    subLessons: [
+      {
+        title: "Introduction to Databases",
+        content: "Databases store and manage structured data efficiently."
+      },
+      {
+        title: "SQL Basics",
+        content: "SQL (Structured Query Language) is used to query and manipulate relational databases."
+      },
+      {
+        title: "Joins and Indexing",
+        content: "Joins combine data from multiple tables, while indexing speeds up searches."
+      }
+    ],
+    codingQuestions: [
+      {
+        title: "Write an SQL Query",
+        difficulty: "Medium",
+        description: "Write a query to find employees earning above a certain salary."
+      }
+    ]
+  }
 ];
+
+
+const User = require('./models/User'); // Import User model
+
+const resetUserLessonProgress = async () => {
+  try {
+    await User.updateMany({}, { $set: { lessonProgress: [] } });
+    console.log("All users' lesson progress has been cleared.");
+  } catch (error) {
+    console.error("Error resetting user lesson progress:", error);
+  }
+};
 
 
 
 // Seed the database
 const seedLessons = async () => {
   try {
-    // Clear existing lessons (optional)
+    // Clear existing lessons
     await Lesson.deleteMany();
     console.log('Existing lessons cleared.');
 
@@ -211,6 +301,7 @@ const seedLessons = async () => {
     await Lesson.insertMany(lessons);
     console.log('Lessons added successfully.');
 
+    await resetUserLessonProgress();
     // Close the connection
     mongoose.connection.close();
   } catch (err) {
@@ -218,6 +309,7 @@ const seedLessons = async () => {
     mongoose.connection.close();
   }
 };
+
 
 // Run the seed function
 seedLessons();

@@ -20,22 +20,6 @@ const CodingPage = () => {
     { id: "63", name: "JavaScript" },
   ];
   
-  const runCode = async () => {
-    setOutput("Running..."); // Show running status
-
-    try {
-      const response = await fetch("http://localhost:5000/api/run-python", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code }),
-      });
-
-      const data = await response.json();
-      setOutput(data.output); // Display the output
-    } catch (error) {
-      setOutput("Error running code");
-    }
-  };
 
   useEffect(() => {
     const fetchQuestion = async () => {
@@ -47,47 +31,36 @@ const CodingPage = () => {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-
+  
         if (!response.ok) throw new Error("Failed to fetch question");
-
+  
         const data = await response.json();
         setQuestion(data);
       } catch (err) {
         setError(err.message);
       }
     };
-
+  
     fetchQuestion();
   }, [lessonId, questionIndex]);
-
+  
   // ✅ Run Code Function (Sends code to Judge0 API)
   const handleRunCode = async () => {
-    setOutput("Running code..."); // Indicate loading state
-    const JUDGE0_API_URL = "https://judge0-ce.p.rapidapi.com/submissions";
-    const JUDGE0_API_KEY = "YOUR_RAPIDAPI_KEY"; // ⚠️ Replace with your actual API key
-
+    setOutput("Running code..."); // Indicate processing state
+  
     try {
-      const response = await axios.post(
-        `${JUDGE0_API_URL}?base64_encoded=false&wait=true`, // Waits for result
-        {
-          source_code: code,
-          language_id: language, // Send selected language ID
-          stdin: "", // No input for now
-        },
-        {
-          headers: {
-            "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
-            "X-RapidAPI-Key": JUDGE0_API_KEY,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
+      const response = await axios.post("http://localhost:5000/api/v1/compiler/run", {
+        sourceCode: code,
+        languageId: language,
+        stdin: "", // Optional input
+      });
+  
       setOutput(response.data.stdout || response.data.stderr || "No output");
     } catch (error) {
       setOutput("Error running code");
     }
   };
+  
 
   if (error) return <div>Error: {error}</div>;
   if (!question) return <div>Loading question...</div>;

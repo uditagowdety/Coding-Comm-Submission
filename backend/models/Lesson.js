@@ -8,7 +8,6 @@ const subLessonSchema = new mongoose.Schema({
 const lessonSchema = new mongoose.Schema({
   title: { type: String, required: true },
   subtitle: { type: String, required: true },
-  theoryContent: { type: String, required: true },
   subLessons: [subLessonSchema], // Add subLessons
   isCompleted: { type: Boolean, default: false },
 
