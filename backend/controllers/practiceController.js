@@ -29,19 +29,21 @@ const getCodingQuestionById = async (req, res) => {
   try {
     const { lessonId, questionIndex } = req.params;
 
-    // Validate lessonId before querying
+    // Validate lessonId
     if (!lessonId || lessonId.length !== 24) {
       return res.status(400).json({ error: "Invalid lesson ID" });
     }
 
     const lesson = await Lesson.findById(lessonId);
-    if (!lesson) return res.status(404).json({ error: 'Lesson not found' });
+    if (!lesson) return res.status(404).json({ error: "Lesson not found" });
 
+    // Ensure question index is valid
     if (!lesson.codingQuestions || lesson.codingQuestions.length <= questionIndex) {
-      return res.status(404).json({ error: 'Question not found' });
+      return res.status(404).json({ error: "Question not found" });
     }
 
-    const question = lesson.codingQuestions[questionIndex];
+    // Convert questionIndex to number
+    const question = lesson.codingQuestions[parseInt(questionIndex, 10)];
 
     res.status(200).json({
       lessonTitle: lesson.title,
@@ -51,9 +53,10 @@ const getCodingQuestionById = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to fetch coding question' });
+    res.status(500).json({ error: "Failed to fetch coding question" });
   }
 };
+
 
 
 module.exports = { getAllPracticeQuestions, getCodingQuestionById };
