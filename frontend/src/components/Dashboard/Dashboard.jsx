@@ -120,24 +120,25 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Stats Section */}
-      <div className="stats-section">
-        <h2 className="stats-title">Total Stats</h2>
-        <div className="stats-grid">
-          <div className="stat-box">
-            <span className="stat-number">{userData.skillsAchieved}</span>
-            <p>Skills Achieved</p>
-          </div>
-          <div className="stat-box">
-            <span className="stat-number">{userData.problemsSolved}</span>
-            <p>Problems Solved</p>
-          </div>
-          <div className="stat-box">
-            <span className="stat-number">{userData.streakDays}</span>
-            <p>Streak Days 🔥</p>
+        {/* Middle Section: Stats */}
+        <div className="stats-section">
+          <h2 className="section-title">Total Stats</h2>
+          <div className="stats-grid">
+            <div className="stat-box">
+              <h3>{userData.skillsAchieved}</h3>
+              <p>Skills Achieved</p>
+            </div>
+            <div className="stat-box">
+              <h3>{userData.problemsSolved}</h3>
+              <p>Problems Solved</p>
+            </div>
+            <div className="stat-box">
+          <h3>{userData.streakDays}</h3>
+          <p>Streak Days 🔥</p>
+        </div>
+
           </div>
         </div>
-      </div>
 
       {/* Recommended Lessons */}
       <div className="recommended-section">
