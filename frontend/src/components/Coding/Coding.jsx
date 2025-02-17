@@ -68,8 +68,8 @@ const Coding = () => {
   return (
     <div className="coding-container">
       <div className="coding-header">
-        <Link to="/home" className="header-item">homepage</Link>
-        <Link to="/dashboard" className="header-item">dashboard</Link>
+        <Link to="/home" className="header-item">Homepage</Link>
+        <Link to="/dashboard" className="header-item">Dashboard</Link>
       </div>
 
       <div className="coding-main">
