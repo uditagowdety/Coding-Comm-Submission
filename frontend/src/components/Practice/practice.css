@@ -97,11 +97,10 @@
 
 /* Footer Styling */
 .footer {
+    width: 100%;
     text-align: center;
-    padding: var(--padding-medium);
+    padding: 1rem;
     background-color: var(--text-light);
-    color: var(--text-dark);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    /* border-top: 1px solid var(--blue); */
+    margin-top: 2rem;
+    border-top: 1px solid var(--blue);
   }  

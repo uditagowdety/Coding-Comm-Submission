@@ -126,7 +126,7 @@ const Dashboard = () => {
       <div className="profile-section">
         <div className="profile-card">
           <div className="profile-pic-container">
-            <div className="profile-pic"></div>
+          <img src="https://picsum.photos/200" alt="Profile" className="profile-pic" />
             <button className="edit-profile-btn" onClick={handleEditClick}>✏️</button>
           </div>
           {isEditing ? (

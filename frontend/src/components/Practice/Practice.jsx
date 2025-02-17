@@ -45,10 +45,10 @@ const Practice = () => {
       {/* Header */}
       <div className="practice-header">
         <Link to="/home" className="header-item">
-          homepage
+          Homepage
         </Link>
         <Link to="/dashboard" className="header-item">
-          dashboard
+          Dashboard
         </Link>
       </div>
 

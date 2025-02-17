@@ -49,9 +49,12 @@
 .icon-circle {
   width: 100px;
   height: 100px;
-  background-color: var(--text-dark); /* Darker icon */
+  background-image: url("https://picsum.photos/200"); /* Replace with actual path */
+  background-size: cover;
+  background-position: center;
   border-radius: 50%;
   margin-bottom: var(--padding-medium);
+  border: 2px solid var(--blue); /* Optional: Adds a nice border */
 }
 
 .lesson-details {
@@ -93,7 +96,7 @@
 
 /* Middle Section */
 .lesson-main-title{
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .theory-middle {
