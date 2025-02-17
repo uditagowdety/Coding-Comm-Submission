@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios"; // ✅ Import axios for API calls
 import "./coding.css";
 
-const CodingPage = () => {
+const Coding = () => {
   const { lessonId, questionIndex } = useParams();
   const [question, setQuestion] = useState(null);
   const [error, setError] = useState("");
@@ -122,4 +122,4 @@ const CodingPage = () => {
   );
 };
 
-export default CodingPage;
+export default Coding;
