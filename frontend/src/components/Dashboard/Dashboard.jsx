@@ -8,6 +8,7 @@ const Dashboard = () => {
   const [error, setError] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [newUsername, setNewUsername] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // Fetch dashboard data
@@ -37,15 +38,15 @@ const Dashboard = () => {
         if (!recResponse.ok) throw new Error("Failed to fetch recommended lessons");
 
         const recData = await recResponse.json();
-        setRecommendedLessons(recData.recommendedLessons || []); // ✅ Ensuring an array
+        setRecommendedLessons(recData.recommendedLessons || []);
       } catch (err) {
         setError(err.message);
       }
     };
 
-    fetchDashboardData(); // Initial fetch
+    fetchDashboardData();
 
-    // ✅ Listen for updates when a lesson is completed
+    // Listen for updates when a lesson is completed
     const updateListener = () => fetchDashboardData();
     window.addEventListener("dashboardUpdate", updateListener);
 
@@ -59,34 +60,59 @@ const Dashboard = () => {
 
   // Handle Save
   const handleSaveClick = async () => {
+    if (!newUsername.trim()) {
+      setError("Username cannot be empty.");
+      return;
+    }
+
+    if (newUsername === userData.username) {
+      setIsEditing(false); // No change, just exit edit mode
+      return;
+    }
+
     try {
+      setLoading(true);
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/v1/update-username", {
+      const response = await fetch("http://localhost:5000/api/v1/dashboard/update-username", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ username: newUsername }),
+        body: JSON.stringify({ username: newUsername.trim() }),
       });
 
-      if (!response.ok) throw new Error("Failed to update username");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to update username");
+      }
 
-      setUserData({ ...userData, username: newUsername });
+      const data = await response.json();
+      setUserData({ ...userData, username: data.username });
       setIsEditing(false);
+      setError("");
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  // Handle Cancel
+  const handleCancelClick = () => {
+    setNewUsername(userData.username);
+    setIsEditing(false);
+    setError("");
   };
 
   // Logout user
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Clear token
-    navigate("/login"); // Redirect to login
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
-  if (error) return <div>Error: {error}</div>;
-  if (!userData) return <div>Loading...</div>;
+  if (error) return <div className="error-message">Error: {error}</div>;
+  if (!userData) return <div className="loading-message">Loading...</div>;
 
   return (
     <div className="dashboard-container">
@@ -104,15 +130,22 @@ const Dashboard = () => {
             <button className="edit-profile-btn" onClick={handleEditClick}>✏️</button>
           </div>
           {isEditing ? (
-            <>
+            <div className="edit-container">
               <input
                 type="text"
                 className="edit-input"
                 value={newUsername}
                 onChange={(e) => setNewUsername(e.target.value)}
+                maxLength={20}
               />
-              <button className="save-button" onClick={handleSaveClick}>Save</button>
-            </>
+              <div className="edit-buttons">
+                <button className="save-button" onClick={handleSaveClick} disabled={loading || newUsername === userData.username}>
+                  {loading ? "Saving..." : "Save"}
+                </button>
+                <button className="cancel-button" onClick={handleCancelClick}>Cancel</button>
+              </div>
+              {error && <p className="error-text">{error}</p>}
+            </div>
           ) : (
             <h2 className="username">@{userData.username}</h2>
           )}
@@ -120,25 +153,24 @@ const Dashboard = () => {
         </div>
       </div>
 
-        {/* Middle Section: Stats */}
-        <div className="stats-section">
-          <h2 className="section-title">Total Stats</h2>
-          <div className="stats-grid">
-            <div className="stat-box">
-              <h3>{userData.skillsAchieved}</h3>
-              <p>Skills Achieved</p>
-            </div>
-            <div className="stat-box">
-              <h3>{userData.problemsSolved}</h3>
-              <p>Problems Solved</p>
-            </div>
-            <div className="stat-box">
-          <h3>{userData.streakDays}</h3>
-          <p>Streak Days 🔥</p>
-        </div>
-
+      {/* Middle Section: Stats */}
+      <div className="stats-section">
+        <h2 className="section-title">Total Stats</h2>
+        <div className="stats-grid">
+          <div className="stat-box">
+            <h3>{userData.skillsAchieved}</h3>
+            <p>Skills Achieved</p>
+          </div>
+          <div className="stat-box">
+            <h3>{userData.problemsSolved}</h3>
+            <p>Problems Solved</p>
+          </div>
+          <div className="stat-box">
+            <h3>{userData.streakDays}</h3>
+            <p>Streak Days 🔥</p>
           </div>
         </div>
+      </div>
 
       {/* Recommended Lessons */}
       <div className="recommended-section">

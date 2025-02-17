@@ -58,10 +58,42 @@ const getRecommendedLessons = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch recommended lessons" });
   }
 };
+const updateUsername = async (req, res) => {
+  try {
+    const userId = req.user.id; // Extract user ID from JWT token
+    const { username } = req.body;
+
+    if (!username || username.trim() === "") {
+      return res.status(400).json({ error: "Username cannot be empty" });
+    }
+
+    // Check if the username already exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser && existingUser._id.toString() !== userId) {
+      return res.status(400).json({ error: "Username already taken" });
+    }
+
+    // Update the username
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { username },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json({ message: "Username updated successfully", username: updatedUser.username });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to update username" });
+  }
+};
 
 // Logout user (invalidate token on frontend)
 const logoutUser = (req, res) => {
   res.status(200).json({ message: "Logged out successfully" });
 };
 
-module.exports = { getUserDashboard, getRecommendedLessons, logoutUser };
+module.exports = { getUserDashboard, updateUsername,getRecommendedLessons, logoutUser };
