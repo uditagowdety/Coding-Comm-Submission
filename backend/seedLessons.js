@@ -277,18 +277,6 @@ const lessons = [
 ];
 
 
-const User = require('./models/User'); // Import User model
-
-const resetUserLessonProgress = async () => {
-  try {
-    await User.updateMany({}, { $set: { lessonProgress: [] } });
-    console.log("All users' lesson progress has been cleared.");
-  } catch (error) {
-    console.error("Error resetting user lesson progress:", error);
-  }
-};
-
-
 
 // Seed the database
 const seedLessons = async () => {
@@ -301,7 +289,6 @@ const seedLessons = async () => {
     await Lesson.insertMany(lessons);
     console.log('Lessons added successfully.');
 
-    await resetUserLessonProgress();
     // Close the connection
     mongoose.connection.close();
   } catch (err) {
