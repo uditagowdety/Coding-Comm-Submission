@@ -9,6 +9,9 @@
 .theory-container {
   font-family: var(--font-body);
   background-color: var(--background-color); /* Light mode background */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
 }
 
 /* Header */
@@ -29,6 +32,7 @@
 
 /* Main Content */
 .theory-main {
+  flex: 1;
   display: flex;
   gap: var(--padding-large);
   padding: var(--padding-large);
@@ -198,7 +202,7 @@
   background-color: var(--yellow-2);
 }
 
-/* Footer */
+/* Fix footer at the bottom */
 .theory-footer {
   background-color: var(--text-light);
   color: var(--text-dark);
@@ -207,4 +211,5 @@
   border-top: 1px solid var(--blue);
   font-size: 1rem;
   font-family: var(--font-body);
+  margin-top: auto; /* Pushes footer to bottom */
 }

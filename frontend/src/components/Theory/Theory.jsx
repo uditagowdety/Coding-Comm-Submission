@@ -164,7 +164,7 @@ const Theory = () => {
           CodeMaze
         </Link>
         <Link to="/dashboard" className="header-item">
-          dashboard
+          Dashboard
         </Link>
       </div>
 
