@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./dashboard.css";
+import API_BASE_URL from "../../config";
+
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
@@ -21,7 +23,7 @@ const Dashboard = () => {
           return;
         }
 
-        const response = await fetch("http://localhost:5000/api/v1/dashboard", {
+        const response = await fetch(`${API_BASE_URL}/dashboard`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -31,7 +33,7 @@ const Dashboard = () => {
         setUserData(data);
         setNewUsername(data.username);
 
-        const recResponse = await fetch("http://localhost:5000/api/v1/dashboard/recommended", {
+        const recResponse = await fetch(`${API_BASE_URL}/dashboard/recommended`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -73,7 +75,7 @@ const Dashboard = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/v1/dashboard/update-username", {
+      const response = await fetch(`${API_BASE_URL}/dashboard/update-username`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

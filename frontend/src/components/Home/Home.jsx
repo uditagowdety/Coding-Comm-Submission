@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./home.css";
+import API_BASE_URL from "../../config";
+
 
 const Home = () => {
   const [lessons, setLessons] = useState([]); // State to hold lessons
@@ -12,7 +14,7 @@ const Home = () => {
   const fetchLessons = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/v1/homepage/lessons", {
+      const response = await fetch(`${API_BASE_URL}/homepage/lessons`, {
         headers: { Authorization: `Bearer ${token}` },
       });
   
@@ -21,7 +23,7 @@ const Home = () => {
       const data = await response.json();
   
       // Fetch user progress separately
-      const progressResponse = await fetch("http://localhost:5000/api/v1/user/progress", {
+      const progressResponse = await fetch(`${API_BASE_URL}/user/progress`, {
         headers: { Authorization: `Bearer ${token}` },
       });
   

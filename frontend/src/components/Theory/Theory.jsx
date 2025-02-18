@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import "./theory.css";
+import API_BASE_URL from "../../config";
 
 const Theory = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const Theory = () => {
 
         // Fetch lesson data
         const lessonResponse = await fetch(
-          `http://localhost:5000/api/v1/homepage/lessons/${id}/theory`,
+          `${API_BASE_URL}/homepage/lessons/${id}/theory`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         if (!lessonResponse.ok) throw new Error("Failed to fetch lesson theory content");
@@ -27,7 +28,7 @@ const Theory = () => {
 
         // Fetch user progress
         const progressResponse = await fetch(
-          `http://localhost:5000/api/v1/user/progress`,
+          `${API_BASE_URL}/user/progress`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -49,7 +50,7 @@ const Theory = () => {
 
         // Fetch all lessons to determine if this is the last lesson
         const lessonsResponse = await fetch(
-          "http://localhost:5000/api/v1/homepage/lessons",
+          `${API_BASE_URL}/homepage/lessons`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -94,7 +95,7 @@ const Theory = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/user/progress/${id}`,
+        `${API_BASE_URL}/user/progress/${id}`,
         {
           method: "PUT",
           headers: { Authorization: `Bearer ${token}` },
@@ -128,7 +129,7 @@ const Theory = () => {
       const token = localStorage.getItem("token");
 
       // Fetch all lessons to determine the next lesson
-      const response = await fetch("http://localhost:5000/api/v1/homepage/lessons", {
+      const response = await fetch(`${API_BASE_URL}/homepage/lessons`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
