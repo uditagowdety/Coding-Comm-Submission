@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./splash.css";
-
 const Splash = () => {
   return (
     <div className="container">

@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./practice.css";
+import API_BASE_URL from "../../config";
+
 
 const Practice = () => {
   const [practiceData, setPracticeData] = useState([]);
@@ -12,7 +14,7 @@ const Practice = () => {
     const fetchPracticeQuestions = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5000/api/v1/practice", {
+        const response = await fetch(`${API_BASE_URL}/practice`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

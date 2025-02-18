@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios"; // ✅ Import axios for API calls
 import "./coding.css";
+import API_BASE_URL from "../../config";
+
 
 const Coding = () => {
   const { lessonId, questionIndex } = useParams();
@@ -27,7 +29,7 @@ const Coding = () => {
 
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:5000/api/v1/practice/coding/${lessonId}/${questionIndex}`,
+          `${API_BASE_URL}/practice/coding/${lessonId}/${questionIndex}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -50,7 +52,7 @@ const Coding = () => {
     setOutput("Running code..."); // Indicate processing state
 
     try {
-      const response = await axios.post("http://localhost:5000/api/v1/compiler/run", {
+      const response = await axios.post(`${API_BASE_URL}/compiler/run`, {
         sourceCode: code,
         languageId: language,
         stdin: "", // Optional input
