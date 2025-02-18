@@ -15,9 +15,10 @@ const app = express();
 // Middleware
 
 app.use(cors({
-  origin: "https://codemaze.vercel.app", // Your frontend URL
+  origin: ["http://localhost:5173", "https://codemaze.vercel.app"], // ✅ Allow frontend URLs
+  credentials: true, // ✅ Allow sending cookies/auth headers
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json());
 
